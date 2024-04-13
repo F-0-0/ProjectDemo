@@ -1,0 +1,51 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.out
+*.app
+
+# Project files
+*.base@*
+*.update@*
+.vscode
+
+CMSIS
+Device
+_Target_1
+Startup
+Objects
+Listings
+
+*.uvoptx
+*.uvguix.*
+keil-build-viewer-record.txt
+keil-build-viewer.log
+EventRecorderStub.scvd
+JLinkLog.txt
+RTE_Components.h
