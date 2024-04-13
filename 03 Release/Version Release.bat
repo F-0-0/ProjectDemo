@@ -27,7 +27,7 @@ set Folder0="V %AppSoftwareVersion% %Date:~3,4%_%Date:~8,2%_%Date:~11,2%"
 
 rmdir /s /q %Folder0%
 mkdir %Folder0%
-01 Source\Objects
+
 set MapFile="..\01 Source\Listings\ProjectDemo.map"
 set HexFile="..\01 Source\Objects\ProjectDemo.hex"
 set AxfFile="..\01 Source\Objects\ProjectDemo.axf"
