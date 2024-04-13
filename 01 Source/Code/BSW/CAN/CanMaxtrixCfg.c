@@ -34,7 +34,7 @@ TxList_t TxList[CAN_TX_NUMBER] = {
 };
 
 RxList_t RxList[CAN_RX_NUMBER] = {
-    //  ID      Peroid  LostTime    CanType     Len LostCunt    IsLost  Buffer              CanRx_CallBack      
-    { 0x050,    100,    1000,       CAN_UDS,    8,  0,          FALSE,  CAN_RX_0x601.data,  CanRx_CallBack_0x601},
+    //  ID      Peroid  LostTime    CanType     Len LostCunt    IsLost      Buffer              CanRx_CallBack      
+    { 0x050,    100,    1000,       CAN_UDS,    8,  0,          STD_FALSE,  CAN_RX_0x601.data,  CanRx_CallBack_0x601},
 };
 // clang-format on

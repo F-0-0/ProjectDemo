@@ -41,6 +41,7 @@ _Target_1
 Startup
 Objects
 Listings
+DebugConfig
 
 *.uvoptx
 *.uvguix.*

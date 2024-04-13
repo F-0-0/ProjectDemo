@@ -23,22 +23,21 @@ set AppSoftwareVersion=%AppSoftwareVersionLineContent:~27,5%
 @REM pause
 
 cd %Path0%
-set Folder0="Ver%AppSoftwareVersion%_%Date:~3,4%_%Date:~8,2%_%Date:~11,2%"
-set Folder1="APP"
+set Folder0="V %AppSoftwareVersion% %Date:~3,4%_%Date:~8,2%_%Date:~11,2%"
 
 rmdir /s /q %Folder0%
-mkdir %Folder0%\%Folder1%
+mkdir %Folder0%
+01 Source\Objects
+set MapFile="..\01 Source\Listings\ProjectDemo.map"
+set HexFile="..\01 Source\Objects\ProjectDemo.hex"
+set AxfFile="..\01 Source\Objects\ProjectDemo.axf"
 
-set AppMapFile="..\01 Source\App\Listings\BS9x44AMxx_Demo.map"
-set AppHexFile="..\01 Source\App\Objects\BS9x44AMxx_Demo.hex"
-set AppAxfFile="..\01 Source\App\Objects\BS9x44AMxx_Demo.axf"
+set MapFileName="ProjectDemo"
+set HexFileName="ProjectDemo"
+set AxfFileName="ProjectDemo"
 
-set AppMapFileName="App_Demo"
-set AppHexFileName="App_Demo"
-set AppAxfFileName="App_Demo"
-
-copy %AppMapFile% %Folder0%\%Folder1%\%AppMapFileName%_%AppSoftwareVersion%".map"
-copy %AppHexFile% %Folder0%\%Folder1%\%AppHexFileName%_%AppSoftwareVersion%".hex"
-copy %AppAxfFile% %Folder0%\%Folder1%\%AppAxfFileName%_%AppSoftwareVersion%".axf"
+copy %MapFile% %Folder0%\%Folder1%\%MapFileName%_V%AppSoftwareVersion%".map"
+copy %HexFile% %Folder0%\%Folder1%\%HexFileName%_V%AppSoftwareVersion%".hex"
+copy %AxfFile% %Folder0%\%Folder1%\%AxfFileName%_V%AppSoftwareVersion%".axf"
 
 pause
