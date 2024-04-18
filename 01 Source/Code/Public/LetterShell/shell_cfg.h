@@ -12,7 +12,7 @@
 #ifndef __SHELL_CFG_H__
 #define __SHELL_CFG_H__
 
-extern unsigned long long GetSysTick(void);
+extern unsigned long long GetSysTick_ms(void);
 // clang-format off
 #ifdef SHELL_CFG_USER
 #include SHELL_CFG_USER
@@ -182,7 +182,7 @@ extern unsigned long long GetSysTick(void);
  *        定义此宏为获取系统Tick，如`HAL_GetTick()`
  * @note 此宏不定义时无法使用双击tab补全命令help，无法使用shell超时锁定
  */
-#define     SHELL_GET_TICK()            GetSysTick()
+#define     SHELL_GET_TICK()            GetSysTick_ms()
 #endif /** SHELL_GET_TICK */
 
 #ifndef SHELL_USING_LOCK

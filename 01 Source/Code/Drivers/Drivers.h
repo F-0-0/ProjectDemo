@@ -2,68 +2,72 @@
  * @file Drivers.h
  * @brief
  * @author F00(1565438246@qq.com)
- * @date 2024-04-13
+ * @date 2024-04-18
  */
-
-#ifndef DRIVERS_H
-#define DRIVERS_H
 
 #include "../Public/Public_IF.h"
 
 /******************* UART Funcation *******************/
-extern void UART_Init(void);
-extern void UART0_RxBuf_Print(void);
-extern char UART0_RxBuf_Pop(void);
-extern void UART0_RxBuf_Push(char data);
-extern uint8_t UART0_RxBuf_Size(void);
-extern void UART0_CallBack(void *parameter, uint32_t event);
+extern void Dev_UART_Init(void);
+extern void Dev_UART_RxBuf_Print(uint8_t instance);
+extern char Dev_UART_RxBuf_Pop(uint8_t instance);
+extern void Dev_UART_RxBuf_Push(uint8_t instance, char data);
+extern uint16_t Dev_UART_RxBuf_Size(uint8_t instance);
 /******************* UART Funcation *******************/
 
 /******************* WDT Funcation *******************/
-extern void WDT_Init(void);
-extern void WDT_CallBack(void);
+extern void Dev_WDT_Init(void);
+extern void Dev_Feed_WDT(void);
 /******************* WDT Funcation *******************/
 
 /******************* ADC Funcation *******************/
-extern void ADC_Init(void);
-extern void ADC_Task(void);
-extern void DMA_Task(void);
-extern void DMA0_Callback(void *parameter, uint8_t status);
-extern void DMA1_Callback(void *parameter, uint8_t status);
-extern void ADC0_Callback(void *parameter, uint8_t status);
-extern void ADC1_Callback(void *parameter, uint8_t status);
-extern uint16_t ADC0_GetValue(uint8_t channel);
-extern uint16_t ADC1_GetValue(uint8_t channel);
+extern void Dev_ADC_Init(void);
+extern void Dev_ADC_Task(void);
+extern void Dev_DMA_Task(void);
+extern uint16_t Dev_ADC_GetValue(uint8_t instance, uint8_t channel);
 /******************* ADC Funcation *******************/
 
-/******************* DMA Funcation *******************/
-/******************* DMA Funcation *******************/
+/******************* EPWM Funcation *******************/
+extern void Dev_EPWM_Init(void);
+extern void Dev_EPWM_ChxEnable(uint32_t instance, uint8_t channelId, uint8_t enable);
+extern void Dev_EPWM_SetPeriod(uint32_t instance, uint16_t periodValue);
+extern void Dev_EPWM_SetDutyCycle(uint32_t instance, uint8_t channel, uint16_t DutyValue);
+extern void Dev_EPWM_SetOutputPolarity(uint32_t instance, uint16_t channelId, uint8_t polarity);
+/******************* EPWM Funcation *******************/
+
+/******************* FLash Funcation *******************/
+extern void Dev_FLASH_Init(void);
+extern void Dev_DFLASH_Erase_All(void);
+extern void Dev_DFLASH_Erase(uint32_t Address);
+extern void Dev_DFLASH_Read(uint32_t Address, uint8_t *Buffer);
+extern void Dev_DFLASH_Write(uint32_t Address, uint8_t *Buffer);
+extern uint8_t Dev_DFLASH_IsBusy(void);
+extern uint8_t Dev_DFLASH_IsEraseComplete(void);
+extern uint8_t Dev_DFLASH_IsWriteComplete(void);
+extern uint8_t Dev_DFLASH_IsReadComplete(void);
+/******************* FLash Funcation *******************/
 
 /******************* Driver Init Funcation *******************/
-extern void CAN_Init(void);   // 01
-extern void SPI_Init(void);   // 02
-extern void IIC_Init(void);   // 03
-extern void LIN_Init(void);   // 04
-extern void GPIO_Init(void);  // 06
-extern void CMP_Init(void);   // 08
-extern void Timer_Init(void); // 09
-extern void RTC_Init(void);   // 10
-extern void PWM_Init(void);   // 11
-extern void Flash_Init(void); // 13
+extern void Dev_CAN_Init(void);   // 01
+extern void Dev_SPI_Init(void);   // 02
+extern void Dev_IIC_Init(void);   // 03
+extern void Dev_LIN_Init(void);   // 04
+extern void Dev_CMP_Init(void);   // 08
+extern void Dev_Timer_Init(void); // 09
+extern void Dev_RTC_Init(void);   // 10
 /******************* Driver Init Funcation *******************/
 
-/******************* Driver IRQ Funcation *******************/
-// clang-format off
-#define Disable_All_IRQ()   //! 与普通进行对接 注意中断是否支持嵌套
-#define Enable_All_IRQ()    //! 与普通进行对接 注意中断是否支持嵌套
+/******************* System Funcation *******************/
+extern void Dev_SystemReset(void);
+extern void Dev_SystemConfig(void);
+extern void Dev_GPIO_Init(void);
+/******************* System Funcation *******************/
 
-#define Disable_WDT_IRQ()   //! 与普通进行对接 
-#define Enable_WDT_IRQ()    //! 与普通进行对接 
-#define Feed_WDT()          //! 与普通进行对接 是否启用窗口模式
-// clang-format on
-/******************* Driver IRQ Funcation *******************/
-extern void SystemReset(void);
-extern void SystemConfig(void);
-extern void Device_Init(void);
+/******************* Interrupt Funcation *******************/
+extern void Disable_All_IRQ(void); //! 是否支持嵌套
+extern void Enable_All_IRQ(void);  //! 是否支持嵌套
+extern void Disable_WDT_IRQ(void);
+extern void Enable_WDT_IRQ(void);
+/******************* Interrupt Funcation *******************/
 
-#endif
+extern void MCU_Init(void);

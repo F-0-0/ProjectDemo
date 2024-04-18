@@ -7,10 +7,10 @@
 
 #include "../Drivers.h"
 
-void WDT_CallBack(void)
+void Dev_WDT_Init(void)
 {
 }
 
-void WDT_Init(void)
+void Dev_Feed_WDT(void)
 {
 }

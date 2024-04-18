@@ -36,10 +36,10 @@ void FlashData_Init(void)
 
 void ProjectInfor_UpData(void)
 {
-    ProjectInfor.Voltage = 0;            // 电源电压（0.1V）
-    ProjectInfor.Current = 0;            // 电源电流（0.1A）
-    ProjectInfor.Temperature = 0;        // 温度（0.1℃）
-    ProjectInfor.RunTime = GetSysTick(); // 运行时间（ms）
+    ProjectInfor.Voltage = 0;               // 电源电压（0.1V）
+    ProjectInfor.Current = 0;               // 电源电流（0.1A）
+    ProjectInfor.Temperature = 0;           // 温度（0.1℃）
+    ProjectInfor.RunTime = GetSysTick_ms(); // 运行时间（ms）
 }
 
 // clang-format off
@@ -53,7 +53,7 @@ static TaskInfor_t TaskList[] = {
 void Idle_Task()
 {
     // 空闲任务
-    ADC_Task();
+    // ADC_Task();
     // DMA_Task();
     // ADC Filter
     // GPIO Filter

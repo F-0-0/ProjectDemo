@@ -34,7 +34,8 @@ extern void MemoryCopy(uint8_t *Dst, uint8_t *Src, uint32_t Size);
 extern void MemorySet(uint8_t *Dst, uint8_t Data, uint32_t Size);
 extern uint8_t MemoryCompare(uint8_t *Src1, uint8_t *Src2, uint32_t Size);
 extern uint32_t CRC32(uint8_t *Buffer, uint32_t Length);
-extern uint64_t GetSysTick(void);
+extern uint64_t GetSysTick_ms(void);
+extern uint64_t GetSysTick_us(void);
 extern void PrintSysTick(void);
 /************************* APP  Funcation *************************/
 

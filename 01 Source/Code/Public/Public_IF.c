@@ -76,14 +76,19 @@ uint32_t CRC32(uint8_t *Buffer, uint32_t Length)
 /******************************     Data Check    ************************************/
 
 /******************************       SysTick     ************************************/
-uint64_t GetSysTick(void)
+uint64_t GetSysTick_us(void)
 {
     return (uint64_t)perfc_convert_ticks_to_us(get_system_ticks());
 }
 
+uint64_t GetSysTick_ms(void)
+{
+    return (uint64_t)perfc_convert_ticks_to_ms(get_system_ticks());
+}
+
 void PrintSysTick(void)
 {
-    uint64_t data = (uint64_t)GetSysTick();
+    uint64_t data = (uint64_t)GetSysTick_us();
     uint16_t microsecond = data % 1000;
     uint16_t millisecond = data / 1000 % 1000;
     uint16_t second = data / 1000 / 1000 % 60;

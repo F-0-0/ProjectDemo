@@ -503,22 +503,17 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Drivers/Deploy</GroupName>
+          <GroupName>Drivers/Stm32Fx</GroupName>
           <Files>
-            <File>
-              <FileName>ADC.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Code\Drivers\DriverDeploy\ADC.c</FilePath>
-            </File>
             <File>
               <FileName>UART.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Code\Drivers\DriverDeploy\UART.c</FilePath>
+              <FilePath>.\Code\Drivers\Stm32Fx\UART.c</FilePath>
             </File>
             <File>
               <FileName>WDT.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Code\Drivers\DriverDeploy\WDT.c</FilePath>
+              <FilePath>.\Code\Drivers\Stm32Fx\WDT.c</FilePath>
             </File>
           </Files>
         </Group>

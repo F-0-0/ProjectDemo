@@ -34,7 +34,7 @@ int main(void)
         {
         case MCU_NORMAL:
             Service_Task();
-            Feed_WDT();
+            Dev_Feed_WDT();
             break;
 
         case MCU_SLEEP:
