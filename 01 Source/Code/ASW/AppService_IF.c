@@ -15,6 +15,14 @@ const uint8_t BuildTime[]       = {__DATE__" "__TIME__}; // 编译时间
 
 ProjectInfor_t ProjectInfor;
 
+// clang-format off
+static TaskInfor_t TaskList[] = {
+    // ID   Period  IsRun       Task0_Function                Parameter
+    {  0,     100,  STD_TRUE,   .Function1 = shellTask,       &shell  }, // 00
+    {  1,     2000, STD_TRUE,   .Function0 = Functional_Task, STD_NULL}, // 01
+};
+// clang-format on
+
 void FlashData_Defualt(void)
 {
     // 加载默认值
@@ -34,37 +42,12 @@ void FlashData_Init(void)
     FlashBufferRead((uint8_t *)&ProjectInfor.FlashData, sizeof(ProjectInfor.FlashData));
 }
 
-void ProjectInfor_UpData(void)
+void ProjectInfor_UpDate(void)
 {
     ProjectInfor.Voltage = 0;               // 电源电压（0.1V）
     ProjectInfor.Current = 0;               // 电源电流（0.1A）
     ProjectInfor.Temperature = 0;           // 温度（0.1℃）
     ProjectInfor.RunTime = GetSysTick_ms(); // 运行时间（ms）
-}
-
-// clang-format off
-static TaskInfor_t TaskList[] = {
-    // ID   Period  IsRun       Task0_Function                Parameter
-    {  0,     100,  STD_TRUE,   .Function1 = shellTask,       &shell  }, // 00
-    {  1,     2000, STD_TRUE,   .Function0 = Functional_Task, STD_NULL}, // 01
-};
-// clang-format on
-
-void Idle_Task()
-{
-    // 空闲任务
-    // ADC_Task();
-    // DMA_Task();
-    // ADC Filter
-    // GPIO Filter
-}
-
-void Sleep_Task()
-{
-    while (1)
-    {
-        // 休眠任务
-    }
 }
 
 void Service_Init(void)
@@ -75,6 +58,7 @@ void Service_Init(void)
 
 void Service_Task(void)
 {
+    ProjectInfor_UpDate();
     uint8_t TaskRunCunt = 0;
     for (uint8_t i = 0; i < sizeof(TaskList) / sizeof(TaskList[0]); i++)
     {
@@ -95,5 +79,22 @@ void Service_Task(void)
     if (TaskRunCunt == 0)
     {
         Idle_Task();
+    }
+}
+
+void Idle_Task()
+{
+    // 空闲任务
+    // ADC_Task();
+    // DMA_Task();
+    // ADC Filter
+    // GPIO Filter
+}
+
+void Sleep_Task()
+{
+    while (1)
+    {
+        // 休眠任务
     }
 }
