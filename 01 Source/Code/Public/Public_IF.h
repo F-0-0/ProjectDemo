@@ -36,6 +36,8 @@ extern uint8_t MemoryCompare(uint8_t *Src1, uint8_t *Src2, uint32_t Size);
 extern uint32_t CRC32(uint8_t *Buffer, uint32_t Length);
 extern uint64_t GetSysTick_ms(void);
 extern uint64_t GetSysTick_us(void);
+extern void delay_ms(int32_t ms);
+extern void delay_us(int32_t us);
 extern void PrintSysTick(void);
 /************************* APP  Funcation *************************/
 

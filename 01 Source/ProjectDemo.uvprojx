@@ -515,6 +515,11 @@
               <FileType>1</FileType>
               <FilePath>.\Code\Drivers\Stm32Fx\WDT.c</FilePath>
             </File>
+            <File>
+              <FileName>System.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Code\Drivers\Stm32Fx\System.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

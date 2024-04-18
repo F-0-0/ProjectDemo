@@ -7,10 +7,23 @@
 
 #include "Drivers.h"
 
+/**
+ * @brief printf 函数从定向到串口
+ */
+int fputc(int ch, FILE *f)
+{
+    // while ((SCI0->S1 & 0x40U) == 0U)
+    //     ; /* Judge whether the serial port is sent */
+
+    // SCI0->D = (uint8_t)ch;
+
+    return ch;
+}
+
 void MCU_Init(void)
 {
     Disable_All_IRQ();
-    SystemConfig();
+    Dev_SystemConfig();
     init_cycle_counter(STD_FALSE); // 开始计时
     Dev_WDT_Init();
     Dev_UART_Init();

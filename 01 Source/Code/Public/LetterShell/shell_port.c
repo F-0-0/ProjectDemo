@@ -9,8 +9,9 @@
 #include "log.h"
 #include "shell_port.h"
 
-extern char UART0_RxBuf_Pop(void);
-extern unsigned char UART0_RxBuf_Size(void);
+extern void Dev_UART_RxBuf_Print(unsigned char instance);
+extern char Dev_UART_RxBuf_Pop(unsigned char instance);
+extern unsigned short Dev_UART_RxBuf_Size(unsigned char instance);
 
 void LogWrite(char *Buffer, short len);
 
@@ -46,13 +47,13 @@ signed short User_Shell_Write(char *ch, unsigned short len)
 extern char UART0_RxBuffer[1024]; // UART0接收数据存储数组
 signed short User_Shell_Read(char *data, unsigned short len)
 {
-    // UART0_RxBuf_Print();
+    // Dev_UART_RxBuf_Print();
 
     unsigned short size = 0;
 
-    if (UART0_RxBuf_Size() != 0)
+    if (Dev_UART_RxBuf_Size(0) != 0)
     {
-        *data = UART0_RxBuf_Pop();
+        *data = Dev_UART_RxBuf_Pop(0);
         size++;
     }
 

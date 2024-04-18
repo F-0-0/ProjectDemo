@@ -24,7 +24,7 @@ int main(void)
 {
     // 如果从bootloader启动，需要关闭看门狗等中断，
     Disable_All_IRQ();
-    Device_Init();
+    MCU_Init();
     Service_Init();
     Enable_All_IRQ();
     PrintSysTick();

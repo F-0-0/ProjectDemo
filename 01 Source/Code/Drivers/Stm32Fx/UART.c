@@ -5,28 +5,10 @@
  * @date 2024-04-13
  */
 
-#include "../Drivers.h"
+#include "../../Public/Public_IF.h"
 
 static char Dev_UART_RxBuffer[4][1024]; // UART0接收数据存储数组
 static uint16_t Dev_UART_Index[4];      // 下一位入队index
-
-void Dev_UART_RxBuf_Print(uint8_t instance)
-{
-    if (Dev_UART_RxBuf_Size(instance) != 0)
-    {
-        Printf("\r\n");
-    }
-
-    for (uint16_t i = 0; i < Dev_UART_RxBuf_Size(instance); i++)
-    {
-        Printf("%x", Dev_UART_RxBuffer[instance][i]);
-    }
-
-    if (Dev_UART_RxBuf_Size(instance) != 0)
-    {
-        Printf("\r\n");
-    }
-}
 
 uint16_t Dev_UART_RxBuf_Size(uint8_t instance)
 {
@@ -68,6 +50,24 @@ void UART0_CallBack(void *parameter, uint32_t event)
     {
         // data = (char)SCI_LL_GetReceivedData(SCI0);
         Dev_UART_RxBuf_Push(0, data);
+    }
+}
+
+void Dev_UART_RxBuf_Print(uint8_t instance)
+{
+    if (Dev_UART_RxBuf_Size(instance) != 0)
+    {
+        Printf("\r\n");
+    }
+
+    for (uint16_t i = 0; i < Dev_UART_RxBuf_Size(instance); i++)
+    {
+        Printf("%x", Dev_UART_RxBuffer[instance][i]);
+    }
+
+    if (Dev_UART_RxBuf_Size(instance) != 0)
+    {
+        Printf("\r\n");
     }
 }
 

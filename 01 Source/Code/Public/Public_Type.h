@@ -23,6 +23,8 @@ typedef unsigned    short   int     uint16_t;
 typedef unsigned    int             uint32_t;
 typedef unsigned    long    long    uint64_t;
 
+typedef unsigned    char            Bool;
+
 #define STD_NULL                    ((void *)0U)
 
 #define STD_VALID                   1U
@@ -48,6 +50,14 @@ typedef unsigned    long    long    uint64_t;
 
 #define STD_ACTIVE                  1U
 #define STD_IDLE                    0U
+
+// 时间宏定义 分辨率1us
+#define TIME_1US                    (1)
+#define TIME_1MS                    (TIME_1US * 1000)
+#define TIME_1S                     (TIME_1MS * 1000)
+#define TIME_1M                     (TIME_1S * 60)
+#define TIME_1H                     (TIME_1S * 60)
+#define TIME_1D                     (TIME_1H * 24)
 
 #define Connect(a,b)                a##b // int   n =Connect(123,456), n=123456
 #define ToSting(a)                  #a   // char* n =ToSting(123456),  n="123456"
