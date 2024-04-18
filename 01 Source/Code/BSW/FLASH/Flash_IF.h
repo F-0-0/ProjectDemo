@@ -1,14 +1,18 @@
 /**
  * @file Flash_IF.h
+ * @author your name (you@domain.com)
  * @brief
- * @author F00(1565438246@qq.com)
- * @date 2024-04-13
+ * @VersionID 0.1
+ * @date 2024-03-17
+ *
+ *
  */
 
 #ifndef FLASH_IF_H
 #define FLASH_IF_H
 
 #include "../../Public/Public_IF.h"
+#include "../../Drivers/Drivers.h"
 
 /******************************** User Configuration ********************************/
 // clang-format off
@@ -19,17 +23,16 @@
 #define PAGE_SIZE           512U        // 页的大小(字节)(最小擦出单元)
 #define PAGE_NUMBER         128U        // 页的数量
 
-#define VERSIONID_SIZE      0x4U // 版本号段  数据大小（字节）
-#define PAGEFLAG0_SIZE      0x4U // 标志1段   数据大小（字节）
-#define PAGEFLAG1_SIZE      0x4U // 标志1段   数据大小（字节）
-#define CRC_SIZE            0x4U // CRC校验段 数据大小（字节）
-#define FLASH_DATA_SIZE     (PAGE_SIZE - VERSIONID_SIZE - PAGEFLAG0_SIZE - PAGEFLAG1_SIZE - CRC_SIZE) // 数据段    数据大小（字节）
+#define VERSIONID_SIZE      0x4U // 版本号段    数据大小（字节）
+#define PAGE_FLAG_SIZE      0x4U // 标志0、1段  数据大小（字节）
+#define CRC_SIZE            0x4U // CRC校验段   数据大小（字节）
+#define FLASH_DATA_SIZE     (PAGE_SIZE - VERSIONID_SIZE - PAGE_FLAG_SIZE * 2 - CRC_SIZE) // 数据段    数据大小（字节）
 
-
-#define VERSIONID_SEGMENT   0x0U            // 版本号段  页的第1、第2、第3、第4个字节
-#define PAGE_FLAG0_SEGMENT  0x1U            // 标志1段   页的第5、第6、第7、第8个字节
-#define PAGE_FLAG1_SEGMENT  PAGE_SIZE - 2   // 标志1段   页的倒数第5、第6、第7、第8个字节
-#define PAGE_CRC_SEGMENT    PAGE_SIZE - 1   // CRC校验段 页的倒数第1、第2、第3、第4个字节
+#define VERSIONID_BASE      0x0U                                        // 版本号段  起始索引
+#define PAGE_FLAG0_BASE     (VERSIONID_BASE + PAGE_FLAG_SIZE)           // 标志0段   起始索引
+#define FLASH_DATA_BASE     (PAGE_FLAG0_BASE + PAGE_FLAG_SIZE)          // 数据段    起始索引
+#define PAGE_FLAG1_BASE     (PAGE_SIZE - 1 - CRC_SIZE - PAGE_FLAG_SIZE) // 标志1段   起始索引
+#define PAGE_CRC_BASE       (PAGE_SIZE - 1 - CRC_SIZE)                  // CRC校验段 起始索引
 
 // clang-format on
 /******************************** User Configuration ********************************/
@@ -61,17 +64,46 @@ typedef struct
 
 typedef struct
 {
-    uint32_t BaseAddress;           // 基准地址
     uint32_t NowAddress;            // 当前地址
+    uint32_t NextAddress;           // 下一页地址
     uint32_t PageMapIndex;          // 映射表索引
-    uint8_t IsReady;                // 是否准备好
-    uint8_t Buffer[PAGE_SIZE];      // 缓存区 外部谨慎操作
-    PageMap_t PageMap[PAGE_NUMBER]; // 映射表 外部谨慎操作
+    uint16_t InvalidPageCnt;        // 无效页数量
+    int16_t WriteCnt;               // 写入请求次数
+    uint8_t IsEraseNextPage;        // 下一页是否擦除
+    uint8_t IsReady;                // 下一页是否擦除
+    uint8_t Buffer[PAGE_SIZE];      // 缓存区
+    PageMap_t PageMap[PAGE_NUMBER]; // 映射表
 } Flash_t;
 
-void Flash_Task(void);
-void Flash_Init(void);
-uint8_t FlashBufferRead(uint8_t *Buffer, uint16_t Size);
-uint8_t FlashBufferWrite(uint8_t *Buffer, uint16_t Size);
+/**
+ * @brief 初始化Flash框架
+ *
+ * @param WriteCntToCommit 写入次数达到该值时，将缓存区的数据写入Flash
+ */
+void Flash_Init(uint8_t WriteCntToCommit);
 
+/**
+ * @brief 找上一个有效页
+ *
+ * @return uint8_t  STD_SUCCESS:成功; STD_ERROR:失败
+ */
+uint8_t PreviousPage(void);
+
+/**
+ * @brief 缓存区读操作：将Flash的缓存数据拷贝到目标Buffer
+ *
+ * @param Buffer    目标Buffer
+ * @param Size      数据拷贝的大小
+ * @return uint8_t  STD_SUCCESS:成功; STD_ERROR:失败
+ */
+uint8_t FlashBufferRead(uint8_t *Buffer, uint16_t Size);
+
+/**
+ * @brief 缓存区写操作：将目标Buffer数据拷贝到Flash的缓存
+ *
+ * @param Buffer    目标Buffer
+ * @param Size      数据拷贝的大小
+ * @return uint8_t  STD_SUCCESS:成功; STD_ERROR:失败
+ */
+uint8_t FlashBufferWrite(uint8_t *Buffer, uint16_t Size);
 #endif
