@@ -12,7 +12,6 @@
 
 #include "../BSW/FLASH/Flash_IF.h"
 #include "../BSW/CAN/CAN_IF.h"
-#include "../BSW/GPIO/GPIO_IF.h"
 
 typedef struct
 {

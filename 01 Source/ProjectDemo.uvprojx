@@ -15,16 +15,15 @@
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>STM32F411CEUx</Device>
-          <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F4xx_DFP.2.17.1</PackID>
-          <PackURL>https://www.keil.com/pack/</PackURL>
-          <Cpu>IRAM(0x20000000,0x00020000) IROM(0x08000000,0x00080000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
+          <Device>BS9044AM100</Device>
+          <Vendor>BYD Semiconductor</Vendor>
+          <PackID>BYD.BYDSemi_BS9044AMXX_DFP.1.1.0</PackID>
+          <Cpu>IRAM(0x20000000,0x10000) IROM(0x00000000,0x80000) IROM2(0x60000000,0x10000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
-          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32F4xx_512 -FS08000000 -FL080000 -FP0($$Device:STM32F411CEUx$CMSIS\Flash\STM32F4xx_512.FLM))</FlashDriverDll>
+          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN2 -FF0BS9X44AMXX_PFLASH -FS00 -FL080000 -FF1BS9X44AMXX_DFLASH -FS160000000 -FL110000 -FP0($$Device:BS9044AM100$Flash\BS9X44\BS9X44AMXX_PFLASH.FLM) -FP1($$Device:BS9044AM100$Flash\BS9X44\BS9X44AMXX_DFLASH.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
-          <RegisterFile>$$Device:STM32F411CEUx$Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h</RegisterFile>
+          <RegisterFile>$$Device:BS9044AM100$Device\ARM\Include\BS9X44\BS9X44AMXX.h</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -34,7 +33,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:STM32F411CEUx$CMSIS\SVD\STM32F411.svd</SFDFile>
+          <SFDFile>$$Device:BS9044AM100$SVD\BS9X44\BS9X44AMXX.SFR</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
@@ -111,7 +110,7 @@
         </CommonProperty>
         <DllOption>
           <SimDllName>SARMCM3.DLL</SimDllName>
-          <SimDllArguments> -REMAP -MPU</SimDllArguments>
+          <SimDllArguments>  -MPU</SimDllArguments>
           <SimDlgDll>DCM.DLL</SimDlgDll>
           <SimDlgDllArguments>-pCM4</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
@@ -189,13 +188,13 @@
             <RvdsCdeCp>0</RvdsCdeCp>
             <nBranchProt>0</nBranchProt>
             <hadIRAM2>0</hadIRAM2>
-            <hadIROM2>0</hadIROM2>
+            <hadIROM2>1</hadIROM2>
             <StupSel>8</StupSel>
             <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <nSecure>0</nSecure>
-            <RoSelD>3</RoSelD>
+            <RoSelD>4</RoSelD>
             <RwSelD>3</RwSelD>
             <CodeSel>0</CodeSel>
             <OptFeed>0</OptFeed>
@@ -208,7 +207,7 @@
             <Ro2Chk>0</Ro2Chk>
             <Ro3Chk>0</Ro3Chk>
             <Ir1Chk>1</Ir1Chk>
-            <Ir2Chk>0</Ir2Chk>
+            <Ir2Chk>1</Ir2Chk>
             <Ra1Chk>0</Ra1Chk>
             <Ra2Chk>0</Ra2Chk>
             <Ra3Chk>0</Ra3Chk>
@@ -248,11 +247,11 @@
               <IRAM>
                 <Type>0</Type>
                 <StartAddress>0x20000000</StartAddress>
-                <Size>0x20000</Size>
+                <Size>0x10000</Size>
               </IRAM>
               <IROM>
                 <Type>1</Type>
-                <StartAddress>0x8000000</StartAddress>
+                <StartAddress>0x0</StartAddress>
                 <Size>0x80000</Size>
               </IROM>
               <XRAM>
@@ -277,13 +276,13 @@
               </OCR_RVCT3>
               <OCR_RVCT4>
                 <Type>1</Type>
-                <StartAddress>0x8000000</StartAddress>
+                <StartAddress>0x0</StartAddress>
                 <Size>0x80000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
+                <StartAddress>0x60000000</StartAddress>
+                <Size>0x10000</Size>
               </OCR_RVCT5>
               <OCR_RVCT6>
                 <Type>0</Type>
@@ -303,7 +302,7 @@
               <OCR_RVCT9>
                 <Type>0</Type>
                 <StartAddress>0x20000000</StartAddress>
-                <Size>0x20000</Size>
+                <Size>0x10000</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
@@ -424,16 +423,6 @@
               <FileName>CanMaxtrixCfg.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Code\BSW\CAN\CanMaxtrixCfg.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>BSW/GPIO</GroupName>
-          <Files>
-            <File>
-              <FileName>GPIO_IF.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Code\BSW\GPIO\GPIO_IF.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -568,14 +557,7 @@
   </Targets>
 
   <RTE>
-    <apis>
-      <api Capiversion="1.0.0" Cclass="Device" Cgroup="STM32Cube Framework" exclusive="1">
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
-        <targetInfos>
-          <targetInfo name="Target 1"/>
-        </targetInfos>
-      </api>
-    </apis>
+    <apis/>
     <components>
       <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.6.0" condition="ARMv6_7_8-M Device">
         <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
@@ -583,80 +565,202 @@
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Capiversion="1.0.0" Cclass="Device" Cgroup="STM32Cube Framework" Csub="Classic" Cvendor="Keil" Cversion="1.8.1" condition="STM32F4 Framework Classic">
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
+      <component Cclass="CMSIS" Cgroup="BS9X44AM Header" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common" Cvendor="Keil" Cversion="1.8.1" condition="STM32F4 HAL Common">
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
+      <component Cclass="Device" Cgroup="Interrupt Manager" Cvendor="BYD" Cversion="1.0.0" condition="BS9X44AM">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="Cortex" Cvendor="Keil" Cversion="1.8.1" condition="STM32F4 HAL">
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="ADC" Cvendor="BYD" Cversion="1.1.0" condition="DMA and SRC Dependended">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="GPIO" Cvendor="Keil" Cversion="1.8.1" condition="STM32F4 HAL">
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CAN" Cvendor="BYD" Cversion="1.1.0" condition="CAN Dependency">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="PWR" Cvendor="Keil" Cversion="1.8.1" condition="STM32F4 HAL">
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CMP" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="RCC" Cvendor="Keil" Cversion="1.8.1" condition="STM32F4 HAL GPIO">
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CRC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="STM32Cube LL" Csub="Common" Cvendor="Keil" Cversion="1.8.1" condition="STM32F4 LL Common">
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CSE" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="STM32Cube LL" Csub="PWR" Cvendor="Keil" Cversion="1.8.1" condition="STM32F4 LL">
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="DMA" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="STM32Cube LL" Csub="RCC" Cvendor="Keil" Cversion="1.8.1" condition="STM32F4 LL">
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EIM" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="STM32Cube LL" Csub="USART" Cvendor="Keil" Cversion="1.8.1" condition="STM32F4 LL">
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EPWM" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="STM32Cube LL" Csub="UTILS" Cvendor="Keil" Cversion="1.8.1" condition="STM32F4">
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="ERM" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="2.6.3" condition="STM32F4 CMSIS">
-        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EWM" Cvendor="BYD" Cversion="1.1.0" condition="Int Dependended">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="FLASH" Cvendor="BYD" Cversion="1.1.0" condition="FLASH Dependency">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="GPIO" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="IIC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="LIN" Cvendor="BYD" Cversion="1.1.0" condition="LIN Dependency">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="MPU" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="PWM" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="RTC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SCI" Cvendor="BYD" Cversion="1.1.0" condition="SCI Dependency">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SPI" Cvendor="BYD" Cversion="1.1.0" condition="SPI Dependency">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SRC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="TIMER" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="TRGMUX" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="UART" Cvendor="BYD" Cversion="1.2.0" condition="UART Dependency">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Peripheral Driver" Csub="WDT" Cvendor="BYD" Cversion="1.1.0" condition="Int Dependended">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Startup" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM">
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
     </components>
     <files>
+      <file attr="config" category="header" condition="BS9X44AM CMSIS-Core" name="Device\ARM\Include\BS9X44\BS9X44AMXX.h" version="1.1.0">
+        <instance index="0">RTE\CMSIS\BS9044AM100\BS9X44AMXX.h</instance>
+        <component Cclass="CMSIS" Cgroup="BS9X44AM Header" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM CMSIS-Core" name="Device\ARM\Include\BS9X44\BS9X44AMXX_Types.h" version="1.0.0">
+        <instance index="0">RTE\CMSIS\BS9044AM100\BS9X44AMXX_Types.h</instance>
+        <component Cclass="CMSIS" Cgroup="BS9X44AM Header" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM CMSIS-Core" name="Device\ARM\Include\BS9X44\BS9X44AMXX_feature.h" version="1.1.0">
+        <instance index="0">RTE\CMSIS\BS9044AM100\BS9X44AMXX_feature.h</instance>
+        <component Cclass="CMSIS" Cgroup="BS9X44AM Header" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM CMSIS-Core" name="Device\ARM\Include\BS9X44\device_register.h" version="1.0.0">
+        <instance index="0">RTE\CMSIS\BS9044AM100\device_register.h</instance>
+        <component Cclass="CMSIS" Cgroup="BS9X44AM Header" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
       <file attr="config" category="header" condition="BS9X44AM CMSIS-Core" name="Device\ARM\Include\BS9X44\BS9X44AMXX.h" version="1.1.0">
         <instance index="0" removed="1">RTE\CMSIS\BS9144AM100\BS9X44AMXX.h</instance>
         <component Cclass="CMSIS" Cgroup="BS9X44AM Header" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
@@ -742,52 +846,924 @@
         <targetInfos/>
       </file>
       <file attr="config" category="linkerScript" condition="BS9X44AM" name="Device\ARM\Scripts\BS9X44AMXX_ac6.sct" version="1.1.0">
-        <instance index="0" removed="1">RTE\Device\BS9044AM100\BS9X44AMXX_ac6.sct</instance>
+        <instance index="0">RTE\Device\BS9044AM100\BS9X44AMXX_ac6.sct</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
         <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="linkerScript" condition="BS9X44AM" name="Device\ARM\Scripts\BS9X44AMXX_ac6_ram.sct" version="1.0.0">
-        <instance index="0" removed="1">RTE\Device\BS9044AM100\BS9X44AMXX_ac6_ram.sct</instance>
+        <instance index="0">RTE\Device\BS9044AM100\BS9X44AMXX_ac6_ram.sct</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
         <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\adc_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\adc_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="ADC" Cvendor="BYD" Cversion="1.1.0" condition="DMA and SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\adc_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\adc_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="ADC" Cvendor="BYD" Cversion="1.1.0" condition="DMA and SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\adc_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\adc_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="ADC" Cvendor="BYD" Cversion="1.1.0" condition="DMA and SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\adc_ll.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\adc_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="ADC" Cvendor="BYD" Cversion="1.1.0" condition="DMA and SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\adc_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\adc_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="ADC" Cvendor="BYD" Cversion="1.1.0" condition="DMA and SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\can_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\can_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CAN" Cvendor="BYD" Cversion="1.1.0" condition="CAN Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\can_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\can_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CAN" Cvendor="BYD" Cversion="1.1.0" condition="CAN Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\can_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\can_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CAN" Cvendor="BYD" Cversion="1.1.0" condition="CAN Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\can_ll.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\can_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CAN" Cvendor="BYD" Cversion="1.1.0" condition="CAN Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\can_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\can_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CAN" Cvendor="BYD" Cversion="1.1.0" condition="CAN Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\cmp_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\cmp_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CMP" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\cmp_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\cmp_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CMP" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\cmp_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\cmp_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CMP" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\cmp_ll.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\cmp_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CMP" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\cmp_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\cmp_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CMP" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\crc_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\crc_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CRC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\crc_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\crc_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CRC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\crc_ll.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\crc_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CRC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\crc_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\crc_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CRC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\cse_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\cse_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CSE" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\cse_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\cse_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CSE" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\cse_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\cse_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CSE" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\cse_ll.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\cse_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CSE" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\cse_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\cse_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="CSE" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\dma_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\dma_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="DMA" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\dma_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\dma_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="DMA" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\dma_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\dma_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="DMA" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\dma_ll.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\dma_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="DMA" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\dma_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\dma_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="DMA" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\eim_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\eim_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EIM" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\eim_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\eim_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EIM" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\eim_ll.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\eim_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EIM" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\eim_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\eim_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EIM" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\epwm_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\epwm_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EPWM" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\epwm_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\epwm_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EPWM" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\epwm_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\epwm_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EPWM" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\epwm_ll.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\epwm_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EPWM" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\epwm_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\epwm_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EPWM" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\erm_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\erm_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="ERM" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\erm_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\erm_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="ERM" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\erm_ll.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\erm_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="ERM" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\erm_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\erm_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="ERM" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\ewm_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\ewm_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EWM" Cvendor="BYD" Cversion="1.1.0" condition="Int Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\ewm_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\ewm_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EWM" Cvendor="BYD" Cversion="1.1.0" condition="Int Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\ewm_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\ewm_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EWM" Cvendor="BYD" Cversion="1.1.0" condition="Int Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\ewm_ll.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\ewm_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EWM" Cvendor="BYD" Cversion="1.1.0" condition="Int Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\ewm_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\ewm_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="EWM" Cvendor="BYD" Cversion="1.1.0" condition="Int Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\flash_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\flash_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="FLASH" Cvendor="BYD" Cversion="1.1.0" condition="FLASH Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\flash_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\flash_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="FLASH" Cvendor="BYD" Cversion="1.1.0" condition="FLASH Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\flash_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\flash_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="FLASH" Cvendor="BYD" Cversion="1.1.0" condition="FLASH Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\flash_ll.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\flash_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="FLASH" Cvendor="BYD" Cversion="1.1.0" condition="FLASH Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\flash_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\flash_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="FLASH" Cvendor="BYD" Cversion="1.1.0" condition="FLASH Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\gpio_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\gpio_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="GPIO" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\gpio_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\gpio_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="GPIO" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\gpio_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\gpio_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="GPIO" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\gpio_ll.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\gpio_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="GPIO" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\gpio_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\gpio_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="GPIO" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\iic_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\iic_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="IIC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\iic_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\iic_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="IIC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\iic_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\iic_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="IIC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\iic_ll.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\iic_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="IIC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\iic_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\iic_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="IIC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\interrupt_manager.c" version="1.0.0">
-        <instance index="0" removed="1">RTE\Device\BS9044AM100\interrupt_manager.c</instance>
+        <instance index="0">RTE\Device\BS9044AM100\interrupt_manager.c</instance>
         <component Cclass="Device" Cgroup="Interrupt Manager" Cvendor="BYD" Cversion="1.0.0" condition="BS9X44AM"/>
         <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\interrupt_manager.h" version="1.0.0">
-        <instance index="0" removed="1">RTE\Device\BS9044AM100\interrupt_manager.h</instance>
+        <instance index="0">RTE\Device\BS9044AM100\interrupt_manager.h</instance>
         <component Cclass="Device" Cgroup="Interrupt Manager" Cvendor="BYD" Cversion="1.0.0" condition="BS9X44AM"/>
         <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\lin_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\lin_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="LIN" Cvendor="BYD" Cversion="1.1.0" condition="LIN Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\lin_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\lin_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="LIN" Cvendor="BYD" Cversion="1.1.0" condition="LIN Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\mpu_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\mpu_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="MPU" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\mpu_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\mpu_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="MPU" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\mpu_ll.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\mpu_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="MPU" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\mpu_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\mpu_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="MPU" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\pwm_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\pwm_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="PWM" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\pwm_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\pwm_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="PWM" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\pwm_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\pwm_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="PWM" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\pwm_ll.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\pwm_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="PWM" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\pwm_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\pwm_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="PWM" Cvendor="BYD" Cversion="1.1.0" condition="SRC Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="linkerScript" condition="Startup ARM" name="Device\ARM\Scripts\ram_debug.ini" version="1.0.0">
-        <instance index="0" removed="1">RTE\Device\BS9044AM100\ram_debug.ini</instance>
+        <instance index="0">RTE\Device\BS9044AM100\ram_debug.ini</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
         <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\rtc_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\rtc_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="RTC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\rtc_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\rtc_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="RTC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\rtc_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\rtc_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="RTC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\rtc_ll.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\rtc_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="RTC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\rtc_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\rtc_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="RTC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\sci_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\sci_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SCI" Cvendor="BYD" Cversion="1.1.0" condition="SCI Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\sci_ll.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\sci_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SCI" Cvendor="BYD" Cversion="1.1.0" condition="SCI Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\sci_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\sci_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SCI" Cvendor="BYD" Cversion="1.1.0" condition="SCI Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\spi_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\spi_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SPI" Cvendor="BYD" Cversion="1.1.0" condition="SPI Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\spi_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\spi_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SPI" Cvendor="BYD" Cversion="1.1.0" condition="SPI Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\spi_irq.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\spi_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SPI" Cvendor="BYD" Cversion="1.1.0" condition="SPI Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\spi_ll.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\spi_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SPI" Cvendor="BYD" Cversion="1.1.0" condition="SPI Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\spi_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\spi_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SPI" Cvendor="BYD" Cversion="1.1.0" condition="SPI Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\src_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\src_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SRC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\src_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\src_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SRC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\src_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\src_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SRC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\src_ll.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\src_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SRC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\src_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\src_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="SRC" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="source" condition="Startup ARM" name="Device\ARM\startup_BS9X44AMXX.s" version="1.0.0">
-        <instance index="0" removed="1">RTE\Device\BS9044AM100\startup_BS9X44AMXX.s</instance>
+        <instance index="0">RTE\Device\BS9044AM100\startup_BS9X44AMXX.s</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
         <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="source" condition="BS9X44AM" name="Device\ARM\Source\BS9X44\system_BS9X44AMXX.c" version="1.0.0">
-        <instance index="0" removed="1">RTE\Device\BS9044AM100\system_BS9X44AMXX.c</instance>
+        <instance index="0">RTE\Device\BS9044AM100\system_BS9X44AMXX.c</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
         <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="header" condition="BS9X44AM" name="Device\ARM\Include\BS9X44\system_BS9X44AMXX.h" version="1.0.0">
-        <instance index="0" removed="1">RTE\Device\BS9044AM100\system_BS9X44AMXX.h</instance>
+        <instance index="0">RTE\Device\BS9044AM100\system_BS9X44AMXX.h</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
         <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\timer_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\timer_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="TIMER" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\timer_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\timer_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="TIMER" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\timer_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\timer_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="TIMER" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\timer_ll.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\timer_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="TIMER" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\timer_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\timer_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="TIMER" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\trgmux_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\trgmux_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="TRGMUX" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\trgmux_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\trgmux_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="TRGMUX" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\trgmux_ll.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\trgmux_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="TRGMUX" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\trgmux_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\trgmux_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="TRGMUX" Cvendor="BYD" Cversion="1.1.0" condition="BS9X44AM"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\uart_driver.c" version="1.2.0">
+        <instance index="0">RTE\Device\BS9044AM100\uart_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="UART" Cvendor="BYD" Cversion="1.2.0" condition="UART Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\uart_driver.h" version="1.2.0">
+        <instance index="0">RTE\Device\BS9044AM100\uart_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="UART" Cvendor="BYD" Cversion="1.2.0" condition="UART Dependency"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\wdt_driver.c" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\wdt_driver.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="WDT" Cvendor="BYD" Cversion="1.1.0" condition="Int Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\wdt_driver.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\wdt_driver.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="WDT" Cvendor="BYD" Cversion="1.1.0" condition="Int Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\wdt_irq.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\wdt_irq.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="WDT" Cvendor="BYD" Cversion="1.1.0" condition="Int Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" condition="BS9X44AM" name="Device\Driver\Source\wdt_ll.c" version="1.0.0">
+        <instance index="0">RTE\Device\BS9044AM100\wdt_ll.c</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="WDT" Cvendor="BYD" Cversion="1.1.0" condition="Int Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="BS9X44AM" name="Device\Driver\Include\wdt_ll.h" version="1.1.0">
+        <instance index="0">RTE\Device\BS9044AM100\wdt_ll.h</instance>
+        <component Cclass="Device" Cgroup="Peripheral Driver" Csub="WDT" Cvendor="BYD" Cversion="1.1.0" condition="Int Dependended"/>
+        <package name="BYDSemi_BS9044AMXX_DFP" schemaVersion="1.4" url="" vendor="BYD" version="1.1.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
       </file>
       <file attr="config" category="linkerScript" condition="BS9X44AM" name="Device\ARM\Scripts\BS9X44AMXX_ac6.sct" version="1.1.0">
         <instance index="0" removed="1">RTE\Device\BS9144AM100\BS9X44AMXX_ac6.sct</instance>
@@ -1078,36 +2054,28 @@
         <targetInfos/>
       </file>
       <file attr="config" category="header" name="CMSIS\Driver\Config\RTE_Device.h" version="2.4.5">
-        <instance index="0">RTE\Device\STM32F411CEUx\RTE_Device.h</instance>
+        <instance index="0" removed="1">RTE\Device\STM32F411CEUx\RTE_Device.h</instance>
         <component Capiversion="1.0.0" Cclass="Device" Cgroup="STM32Cube Framework" Csub="Classic" Cvendor="Keil" Cversion="1.8.1" condition="STM32F4 Framework Classic"/>
         <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
-        <targetInfos>
-          <targetInfo name="Target 1"/>
-        </targetInfos>
+        <targetInfos/>
       </file>
       <file attr="config" category="source" condition="STM32F411xE_ARMCC" name="Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s" version="2.6.8">
-        <instance index="0">RTE\Device\STM32F411CEUx\startup_stm32f411xe.s</instance>
+        <instance index="0" removed="1">RTE\Device\STM32F411CEUx\startup_stm32f411xe.s</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="2.6.3" condition="STM32F4 CMSIS"/>
         <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
-        <targetInfos>
-          <targetInfo name="Target 1"/>
-        </targetInfos>
+        <targetInfos/>
       </file>
       <file attr="config" category="header" name="MDK\Templates\Inc\stm32f4xx_hal_conf.h" version="1.8.1">
-        <instance index="0">RTE\Device\STM32F411CEUx\stm32f4xx_hal_conf.h</instance>
+        <instance index="0" removed="1">RTE\Device\STM32F411CEUx\stm32f4xx_hal_conf.h</instance>
         <component Capiversion="1.0.0" Cclass="Device" Cgroup="STM32Cube Framework" Csub="Classic" Cvendor="Keil" Cversion="1.8.1" condition="STM32F4 Framework Classic"/>
         <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
-        <targetInfos>
-          <targetInfo name="Target 1"/>
-        </targetInfos>
+        <targetInfos/>
       </file>
       <file attr="config" category="source" name="Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c" version="2.6.8">
-        <instance index="0">RTE\Device\STM32F411CEUx\system_stm32f4xx.c</instance>
+        <instance index="0" removed="1">RTE\Device\STM32F411CEUx\system_stm32f4xx.c</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="2.6.3" condition="STM32F4 CMSIS"/>
         <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.17.1"/>
-        <targetInfos>
-          <targetInfo name="Target 1"/>
-        </targetInfos>
+        <targetInfos/>
       </file>
       <file attr="config" category="linkerScript" condition="BS9X44AM CMSIS-Core" name="Device\ARM\Scripts\BS9X44AMXX_ac6.sct" version="1.0.0">
         <instance index="0" removed="1">RTE\Startup\BS9144AM100\BS9X44AMXX_ac6.sct</instance>

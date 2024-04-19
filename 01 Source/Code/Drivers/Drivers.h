@@ -37,9 +37,9 @@ extern void Dev_PWM_SetOutputPolarity(uint32_t Instance, uint16_t Channel, uint8
 
 /******************* FLash Funcation ******************/
 extern void Dev_FLASH_Init(void);
-extern Bool Dev_DFLASH_Erase(uint32_t Address);                  // 堵塞式 擦
-extern Bool Dev_DFLASH_Read(uint32_t Address, uint8_t *Buffer);  // 堵塞式 读
-extern Bool Dev_DFLASH_Write(uint32_t Address, uint8_t *Buffer); // 堵塞式 写
+extern uint8_t Dev_DFLASH_Erase(uint32_t Address);                  // 堵塞式 擦 确保SPI等时序不被打断
+extern uint8_t Dev_DFLASH_Read(uint32_t Address, uint8_t *Buffer);  // 堵塞式 读 确保SPI等时序不被打断
+extern uint8_t Dev_DFLASH_Write(uint32_t Address, uint8_t *Buffer); // 堵塞式 写 确保SPI等时序不被打断
 /******************* FLash Funcation ******************/
 
 /******************* Driver Init Funcation *******************/
@@ -55,7 +55,12 @@ extern void Dev_RTC_Init(void);   // 10
 /******************* System Funcation *******************/
 extern void Dev_SystemReset(void);
 extern void Dev_SystemConfig(void);
+
 extern void Dev_GPIO_Config(void);
+extern void Dev_GPIO_Toggle(void);
+extern void Dev_GPIO_SetHigh(uint32_t Pin);
+extern void Dev_GPIO_SetLow(uint32_t Pin);
+extern uint8_t Dev_GPIO_Get(uint32_t Pin);
 /******************* System Funcation *******************/
 
 /******************* Interrupt Funcation *******************/

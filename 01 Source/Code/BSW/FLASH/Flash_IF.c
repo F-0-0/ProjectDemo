@@ -15,26 +15,22 @@
 
 static Flash_t Flash;
 
-static uint8_t PageSearch(void);
-static uint8_t PageSearchLast(void);
+static uint16_t PageSearch(void);
 static uint8_t PageVerify(void);
-static void PageMapSort(void);
-
 static void FlashUpDate_FrameInfor(void);
-static void FlashUpDate_NextAddress(void);
 
 /**
  * @brief 寻找所有的有效页
  *
- * @return uint8_t  STD_SUCCESS:成功; STD_ERROR:失败
+ * @return uint16_t  无效页数量
  */
-static uint8_t PageSearch(void)
+static uint16_t PageSearch(void)
 {
     uint32_t PageAddress = BASE_ADDRESS;
     uint32_t VersionID = 0;
     uint32_t Page_Flag0 = 0;
     uint32_t Page_Flag1 = 0;
-
+    uint8_t FindFlag = STD_FALSE;
     for (uint16_t i = 0; i < PAGE_NUMBER; i++)
     {
         PageAddress += i * PAGE_SIZE;
@@ -49,80 +45,31 @@ static uint8_t PageSearch(void)
             Flash.PageMap[i].Address = PageAddress;
             Flash.PageMap[i].VersionID = VersionID;
             Flash.PageMap[i].IsValid = STD_VALID;
-            Flash.PageMap[i].IsErase = STD_DISABLE;
+            if (FindFlag == STD_FALSE)
+            {
+                if (Flash.PageMapIndex == 0)
+                {
+                    Flash.PageMapIndex = i;
+                }
+                else if (Flash.PageMap[i].VersionID - Flash.PageMap[Flash.PageMapIndex].VersionID > PAGE_NUMBER)
+                {
+                    // 这里两个页的VersionID差值大于了PageNumber，说明VersionID已经翻转，小的那个是最新的页
+                    // uint8_t的数据 255 + 1= 0 --> 0 - 255 = 1
+                    FindFlag = STD_TRUE;
+                }
+                Flash.PageMapIndex = i;
+                Flash.NowAddress = Flash.PageMap[i].Address;
+            }
         }
         else
         {
             Flash.PageMap[i].Address = PageAddress;
             Flash.PageMap[i].VersionID = UINT16_MAX;
             Flash.PageMap[i].IsValid = STD_INVALID;
-            Flash.PageMap[i].IsErase = STD_ENABLE;
             Flash.InvalidPageCnt++;
         }
     }
-    return STD_SUCCESS;
-}
-
-/**
- * @brief 对PageMap进行排序：冒泡排序 这里有优化空间
- *
- */
-static void PageMapSort(void)
-{
-    uint16_t PageSize = PAGE_SIZE;
-    for (uint16_t i = 0; i < PageSize - 1; i++)
-    {
-        for (uint16_t j = 0; j < PageSize - i - 1; j++)
-        {
-            if (Flash.PageMap[j].VersionID > Flash.PageMap[j + 1].VersionID)
-            {
-                uint16_t VersionID = Flash.PageMap[j].VersionID;
-                uint16_t Address = Flash.PageMap[j].Address;
-                uint8_t IsValid = Flash.PageMap[j].IsValid;
-
-                Flash.PageMap[j].VersionID = Flash.PageMap[j + 1].VersionID;
-                Flash.PageMap[j].Address = Flash.PageMap[j + 1].Address;
-                Flash.PageMap[j].IsValid = Flash.PageMap[j + 1].IsValid;
-
-                Flash.PageMap[j + 1].VersionID = VersionID;
-                Flash.PageMap[j + 1].Address = Address;
-                Flash.PageMap[j + 1].IsValid = IsValid;
-            }
-        }
-    }
-}
-
-/**
- * @brief 寻找最新的有效页
- *
- * @return uint8_t  STD_SUCCESS:成功; STD_ERROR:失败
- */
-static uint8_t PageSearchLast(void)
-{
-    Flash.PageMapIndex = 0;
-    for (uint16_t i = 0; i < PAGE_NUMBER - 1; i++)
-    {
-        // 因为之前对PageMap进行了排序，无效的页在最后；有效页VersionID排序是由小到大
-        if (Flash.PageMap[i + 1].IsValid == STD_VALID)
-        {
-            // 这里两个页的VersionID差值大于了PageNumber，说明VersionID已经翻转，小的那个是最新的页
-            if (Flash.PageMap[i + 1].VersionID - Flash.PageMap[i].VersionID >= PAGE_NUMBER)
-            {
-                Flash.PageMapIndex = i;
-                break;
-            }
-            else // 取大的VersionID
-            {
-                Flash.PageMapIndex = i + 1;
-            }
-        }
-        else // PageMap后面已经没有 有效的页
-        {
-            break;
-        }
-    }
-    Flash.NowAddress = Flash.PageMap[Flash.PageMapIndex].Address;
-    return STD_SUCCESS;
+    return Flash.InvalidPageCnt;
 }
 
 /**
@@ -133,38 +80,33 @@ static uint8_t PageSearchLast(void)
 static uint8_t PageVerify(void)
 {
     uint32_t Page_CRC32 = 0;
-    for (uint16_t i = 0; i < PAGE_NUMBER; i++)
+    if (Dev_DFLASH_Read(Flash.NowAddress, Flash.Buffer) == STD_SUCCESS)
     {
-        if (Dev_DFLASH_Read(Flash.NowAddress, Flash.Buffer) == STD_SUCCESS)
+        MemoryCopy((uint8_t *)&Page_CRC32, Flash.Buffer + PAGE_CRC_BASE, CRC_SIZE);
+        if (Page_CRC32 == CRC32(Flash.Buffer, PAGE_SIZE - CRC_SIZE))
         {
-            MemoryCopy((uint8_t *)&Page_CRC32, Flash.Buffer + PAGE_CRC_BASE, CRC_SIZE);
-            if (Page_CRC32 == CRC32(Flash.Buffer, PAGE_SIZE - CRC_SIZE))
-            {
-                Flash.IsReady = STD_SUCCESS;
-                return STD_SUCCESS;
-            }
-            else
-            {
-                PreviousPage();
-            }
-        }
-        else
-        {
-            PreviousPage();
+            return STD_SUCCESS;
         }
     }
+    {
+        // 片内的Flash，读取失败说明Flash损坏
+    }
+
+    for (uint16_t i = 1; i < PAGE_NUMBER; i++)
+    {
+        if (FlashPreviousPage() == STD_SUCCESS)
+        {
+            return STD_SUCCESS;
+        }
+    }
+
     return STD_ERROR;
 }
 
-static void FlashUpDate_NextAddress(void)
-{
-    Flash.NextAddress = Flash.NowAddress + PAGE_SIZE; // 更新当前地址
-    if (Flash.NextAddress >= BASE_ADDRESS + PAGE_NUMBER * PAGE_SIZE)
-    {
-        Flash.NextAddress = BASE_ADDRESS;
-    }
-}
-
+/**
+ * @brief 在写入Flash前更新版本号、Page_Flag0、Page_Flag1、CRC
+ *
+ */
 static void FlashUpDate_FrameInfor(void)
 {
     uint32_t VersionID = 0;
@@ -172,8 +114,12 @@ static void FlashUpDate_FrameInfor(void)
     uint32_t Page_Flag1;
     uint32_t CRC;
 
-    FlashUpDate_NextAddress();
-    Flash.NowAddress = Flash.NextAddress;
+    Flash.NowAddress = Flash.NowAddress + PAGE_SIZE; // 更新当前地址
+    if (Flash.NowAddress >= BASE_ADDRESS + PAGE_NUMBER * PAGE_SIZE)
+    {
+        Flash.NowAddress = BASE_ADDRESS;
+    }
+
     MemoryCopy((uint8_t *)&VersionID, Flash.Buffer + VERSIONID_BASE, VERSIONID_SIZE); // 获取版本号
 
     Page_Flag0 = Page0FlagCalculate(VersionID, Flash.NowAddress); // 计算Page_Flag0
@@ -187,12 +133,54 @@ static void FlashUpDate_FrameInfor(void)
     MemoryCopy(Flash.Buffer + PAGE_CRC_BASE, (uint8_t *)&CRC, CRC_SIZE);
 }
 
-uint8_t PreviousPage(void)
+uint8_t FlashPreviousPage(void)
 {
-    if (Flash.PageMapIndex == 0)
+    uint32_t Index = Flash.PageMapIndex;
+    uint32_t Page_CRC32 = 0;
+
+    Flash.PageMap[Index].IsValid = STD_INVALID;
+    Dev_DFLASH_Erase(Flash.NowAddress);
+
+    do
     {
-    }
-    return STD_SUCCESS;
+        if (Index == 0)
+        {
+            Index = PAGE_NUMBER - 1;
+        }
+        else
+        {
+            Index--;
+        }
+
+        if (Flash.PageMap[Index].IsValid == STD_VALID)
+        {
+            if (Dev_DFLASH_Read(Flash.NowAddress, Flash.Buffer) == STD_SUCCESS)
+            {
+                MemoryCopy((uint8_t *)&Page_CRC32, Flash.Buffer + PAGE_CRC_BASE, CRC_SIZE);
+                if (Page_CRC32 == CRC32(Flash.Buffer, PAGE_SIZE - CRC_SIZE))
+                {
+                    Flash.NowAddress = Flash.PageMap[Index].Address;
+                    Flash.PageMapIndex = Index;
+                    return STD_SUCCESS;
+                }
+
+                Flash.PageMap[Index].IsValid = STD_INVALID;
+                Dev_DFLASH_Erase(Flash.NowAddress);
+            }
+            else
+            {
+                // 片内的Flash，读取失败说明Flash损坏
+            }
+        }
+
+        if (Index == Flash.PageMapIndex)
+        {
+            return STD_ERROR;
+        }
+
+    } while (1);
+
+    return STD_ERROR;
 }
 
 uint8_t FlashBufferRead(uint8_t *Buffer, uint16_t Size)
@@ -213,53 +201,44 @@ uint8_t FlashBufferWrite(uint8_t *Buffer, uint16_t Size)
     if (Size <= FLASH_DATA_SIZE)
     {
         MemoryCopy(Flash.Buffer + FLASH_DATA_BASE, Buffer, Size);
-
-        if (Flash.IsEraseNextPage == STD_FALSE)
-        {
-            FlashUpDate_NextAddress();
-            Dev_DFLASH_Erase(Flash.NextAddress);
-        }
-
-        if (Flash.IsEraseNextPage == STD_TRUE && Flash.WriteCnt-- <= 0)
-        {
-            Dev_DFLASH_Write(Flash.NowAddress, Flash.Buffer);
-        }
-
         return STD_SUCCESS;
     }
     return STD_ERROR;
 }
 
+uint8_t FlashBufferCommit(void)
+{
+    FlashUpDate_FrameInfor();
+    if (Dev_DFLASH_Erase(Flash.NowAddress) == STD_SUCCESS &&
+        Dev_DFLASH_Write(Flash.NowAddress, Flash.Buffer) == STD_SUCCESS)
+    {
+        return STD_SUCCESS;
+    }
+    else
+    {
+        return STD_ERROR;
+    }
+}
+
 void Flash_Init(uint8_t WriteCntToCommit)
 {
-    Flash.IsEraseNextPage = STD_FALSE;
     Flash.NowAddress = BASE_ADDRESS;
-    Flash.IsReady = STD_ERROR;
-    Flash.WriteCnt = WriteCntToCommit;
+    Flash.PageMapIndex = 0;
     Flash.InvalidPageCnt = 0;
+    Flash.WriteCnt = WriteCntToCommit;
+    Flash.IsEraseNextPage = 0;
+    Flash.IsReady = STD_ERROR;
 
     MemorySet((uint8_t *)Flash.PageMap, 0, sizeof(Flash.PageMap));
     MemorySet(Flash.Buffer, 0, sizeof(Flash.Buffer));
 
-    PageSearch();
-    if (Flash.InvalidPageCnt != PAGE_SIZE)
+    if (PageSearch() != PAGE_SIZE)
     {
-        PageMapSort();
-        PageSearchLast();
-        PageVerify();
+        Flash.IsReady = PageVerify();
     }
     else
     {
         MemorySet(Flash.Buffer, 0x00, PAGE_SIZE); // 数据段置零
-        FlashUpDate_FrameInfor();
-        if (Dev_DFLASH_Erase(Flash.NowAddress) == STD_SUCCESS &&
-            Dev_DFLASH_Write(Flash.NowAddress, Flash.Buffer) == STD_SUCCESS)
-        {
-            Flash.IsReady = STD_SUCCESS;
-        }
-        else
-        {
-            Flash.IsReady = STD_ERROR;
-        }
+        Flash.IsReady = FlashBufferCommit();
     }
 }

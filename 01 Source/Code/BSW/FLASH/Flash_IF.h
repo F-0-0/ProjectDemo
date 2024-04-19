@@ -57,15 +57,13 @@
 typedef struct
 {
     uint32_t Address;   // 页的地址
-    uint16_t VersionID; // 页的版本号
+    uint32_t VersionID; // 页的版本号
     uint8_t IsValid;    // 页是否有效
-    uint8_t IsErase;    // 页是否需要擦除
 } PageMap_t;
 
 typedef struct
 {
     uint32_t NowAddress;            // 当前地址
-    uint32_t NextAddress;           // 下一页地址
     uint32_t PageMapIndex;          // 映射表索引
     uint16_t InvalidPageCnt;        // 无效页数量
     int16_t WriteCnt;               // 写入请求次数
@@ -83,11 +81,11 @@ typedef struct
 void Flash_Init(uint8_t WriteCntToCommit);
 
 /**
- * @brief 找上一个有效页
+ * @brief 找上一个有效页，并擦除当前页，以及在查找中遇到的CRC校验失败的页
  *
- * @return uint8_t  STD_SUCCESS:成功; STD_ERROR:失败
+ * @return uint8_t STD_SUCCESS:成功; STD_ERROR:所有页无效，没有上一页了
  */
-uint8_t PreviousPage(void);
+uint8_t FlashPreviousPage(void);
 
 /**
  * @brief 缓存区读操作：将Flash的缓存数据拷贝到目标Buffer
@@ -106,4 +104,11 @@ uint8_t FlashBufferRead(uint8_t *Buffer, uint16_t Size);
  * @return uint8_t  STD_SUCCESS:成功; STD_ERROR:失败
  */
 uint8_t FlashBufferWrite(uint8_t *Buffer, uint16_t Size);
+
+/**
+ * @brief 将Flash的缓存数据写入Flash
+ *
+ * @return uint8_t
+ */
+uint8_t FlashBufferCommit(void);
 #endif
