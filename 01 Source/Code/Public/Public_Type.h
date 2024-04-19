@@ -68,6 +68,34 @@ typedef unsigned    char            Bool;
 #define Set_BitTo1(value,bit)       ((value) |=  (1<<(bit))) // 把某个位置1
 #define Toggle_Bit(value,bit)       ((value) ^=  (1<<(bit))) //! 把某个位反转
 
+
+/**
+ * @brief 向上循环，超出max则从min开始，直到max-min次循环结束
+ *
+ * @param index 循环变量
+ * @param cycle 循环次数
+ * @param start index 开始的值
+ * @param min index 能达到的最小值
+ * @param max index 能达到的最大值-1
+ */
+#define For_U(index, cycle, start, min, max) for (index = (start < max ? start : min), cycle = 0; \
+                                                  cycle < max - min;                              \
+                                                  index++, index = (index < max ? index : min), cycle++)
+
+/**
+ * @brief 向下循环，超出min则从max开始，直到max-min次循环结束
+ *
+ * @param index 循环变量
+ * @param cycle 循环次数
+ * @param start index 开始的值
+ * @param min index 能达到的最小值
+ * @param max index 能达到的最大值-1
+ */
+#define For_D(index, cycle, start, min, max) for (index = (start > min ? start : max), cycle = 0; \
+                                                  cycle < max - min;                              \
+                                                  index--, index = (index >= min ? index : max - 1), cycle++)
+
+
 // #define DEBUG     //! 注释后取消断言
 #define ASW_DEBUG //! 注释后取消断言
 #define BSW_DEBUG //! 注释后取消断言
