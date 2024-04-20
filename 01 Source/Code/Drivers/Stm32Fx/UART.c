@@ -7,8 +7,8 @@
 
 #include "../../Public/Public_IF.h"
 
-static char Dev_UART_RxBuffer[4][1024]; // UART0接收数据存储数组
-static uint16_t Dev_UART_Index[4];      // 下一位入队index
+static char Dev_UART_RxBuffer[4][512]; // UART0接收数据存储数组
+static uint16_t Dev_UART_Index[4];     // 下一位入队index
 
 uint16_t Dev_UART_RxBuf_Size(uint8_t instance)
 {
@@ -43,16 +43,6 @@ char Dev_UART_RxBuf_Pop(uint8_t instance)
     return Result;
 }
 
-void UART0_CallBack(void *parameter, uint32_t event)
-{
-    char data = 0;
-    if (1 == event)
-    {
-        // data = (char)SCI_LL_GetReceivedData(SCI0);
-        Dev_UART_RxBuf_Push(0, data);
-    }
-}
-
 void Dev_UART_RxBuf_Print(uint8_t instance)
 {
     if (Dev_UART_RxBuf_Size(instance) != 0)
@@ -68,6 +58,16 @@ void Dev_UART_RxBuf_Print(uint8_t instance)
     if (Dev_UART_RxBuf_Size(instance) != 0)
     {
         Printf("\r\n");
+    }
+}
+
+void Dev_UART0_CallBack(void *parameter, uint32_t event)
+{
+    char data = 0;
+    if (1 == event)
+    {
+        // data = (char)SCI_LL_GetReceivedData(SCI0);
+        Dev_UART_RxBuf_Push(0, data);
     }
 }
 

@@ -6,7 +6,7 @@
  */
 
 #if 1
-// #include "./ASW/AppService_IF.h"
+#include "./ASW/AppService_IF.h"
 #include "stdio.h"
 
 /**
@@ -42,7 +42,7 @@
  * @param argv
  * @return int
  */
-int main(int argc, char const *argv[])
+int For_Test(int argc, char const *argv[])
 {
     int index = 5;
     int min = 0;

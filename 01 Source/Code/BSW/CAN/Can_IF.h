@@ -44,6 +44,7 @@
 #define CAN_IF_H
 
 #include "../../Public/Public_IF.h"
+#include "../../Drivers/Drivers.h"
 #include "CanMaxtrixCfg.h"
 
 /******************************** User Configuration ********************************/

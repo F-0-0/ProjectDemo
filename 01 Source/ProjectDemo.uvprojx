@@ -371,7 +371,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x20000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile></ScatterFile>
+            <ScatterFile>.\RTE\Device\BS9044AM100\BS9X44AMXX_ac6.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc></Misc>
@@ -518,11 +518,6 @@
               <FileName>AppService_IF.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Code\ASW\AppService_IF.c</FilePath>
-            </File>
-            <File>
-              <FileName>BasicsService_IF.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Code\BSW\BasicsService_IF.c</FilePath>
             </File>
             <File>
               <FileName>Public_IF.c</FileName>

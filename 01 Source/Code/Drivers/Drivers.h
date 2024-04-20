@@ -57,7 +57,7 @@ extern void Dev_SystemReset(void);
 extern void Dev_SystemConfig(void);
 
 extern void Dev_GPIO_Config(void);
-extern void Dev_GPIO_Toggle(void);
+extern void Dev_GPIO_Toggle(int32_t Pin);
 extern void Dev_GPIO_SetHigh(uint32_t Pin);
 extern void Dev_GPIO_SetLow(uint32_t Pin);
 extern uint8_t Dev_GPIO_Get(uint32_t Pin);

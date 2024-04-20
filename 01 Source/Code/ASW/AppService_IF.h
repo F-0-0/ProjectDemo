@@ -8,7 +8,8 @@
 #ifndef APPSERVICE_IF_H
 #define APPSERVICE_IF_H
 
-#include "../BSW/BasicsService_IF.h"
+#include "../Public/Public_IF.h"
+#include "../Drivers/Drivers.h"
 
 #include "../BSW/FLASH/Flash_IF.h"
 #include "../BSW/CAN/CAN_IF.h"

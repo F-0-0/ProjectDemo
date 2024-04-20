@@ -7,8 +7,6 @@
 
 #include "./ASW/AppService_IF.h"
 
-#include "test.c"
-
 typedef enum
 {
     MCU_NORMAL,
