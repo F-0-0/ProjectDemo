@@ -17,9 +17,9 @@ ProjectInfor_t ProjectInfor;
 
 // clang-format off
 static TaskInfor_t TaskList[] = {
-    // ID   Period  IsRun       Task0_Function                Parameter
-    {  0,     100,  STD_TRUE,   .Function1 = shellTask,       &shell  }, // 00
-    {  1,     2000, STD_TRUE,   .Function0 = Functional_Task, STD_NULL}, // 01
+    //  ID  IsRun       Period  Task0_Function                  Parameter
+    {   0,  STD_TRUE,   100,   .Function1 = shellTask,          &shell  }, // 00
+    {   1,  STD_TRUE,   2000,  .Function0 = Functional_Task,    STD_NULL}, // 01
 };
 // clang-format on
 

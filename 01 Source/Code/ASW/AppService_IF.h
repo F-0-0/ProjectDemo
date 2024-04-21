@@ -43,8 +43,8 @@ typedef void (*Task1_Function)(void *);
 typedef struct
 {
     uint8_t ID;
-    uint16_t Period; // ms
     uint8_t IsRun;
+    uint16_t Period; // ms
     union
     {
         Task0_Function Function0;

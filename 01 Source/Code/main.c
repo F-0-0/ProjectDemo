@@ -44,7 +44,7 @@ int main(void)
             break;
 
         default:
-            MCU_STATUS = MCU_NORMAL;
+            Dev_SystemReset();
             break;
         }
     }
