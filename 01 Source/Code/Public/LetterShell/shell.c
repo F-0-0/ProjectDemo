@@ -3,10 +3,12 @@
  * @author Letter (NevermindZZT@gmail.com)
  * @version 3.0.0
  * @date 2019-12-30
- * 
+ *
  * @copyright (c) 2020 Letter
- * 
+ *
  */
+
+// clang-format off
 
 #include "shell.h"
 #include "shell_cfg.h"
@@ -1225,9 +1227,6 @@ int shellSetVar(char *name, int value)
     }
     return shellSetVarValue(shell, command, value);
 }
-SHELL_EXPORT_CMD(
-SHELL_CMD_PERMISSION(0)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC)|SHELL_CMD_DISABLE_RETURN,
-setVar, shellSetVar, set var);
 
 
 /**
@@ -1754,9 +1753,6 @@ void shellHelp(int argc, char *argv[])
         shellWriteCommandHelp(shell, argv[1]);
     }
 }
-SHELL_EXPORT_CMD(
-SHELL_CMD_PERMISSION(0)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_MAIN)|SHELL_CMD_DISABLE_RETURN,
-help, shellHelp, show command info\r\nhelp [cmd]);
 
 /**
  * @brief shell 输入处理
@@ -1843,7 +1839,6 @@ void shellHandler(Shell *shell, char data)
     SHELL_UNLOCK(shell);
 }
 
-
 #if SHELL_SUPPORT_END_LINE == 1
 void shellWriteEndLine(Shell *shell, char *buffer, int len)
 {
@@ -1870,31 +1865,6 @@ void shellWriteEndLine(Shell *shell, char *buffer, int len)
 }
 #endif /** SHELL_SUPPORT_END_LINE == 1 */
 
-
-/**
- * @brief shell 任务
- * 
- * @param param 参数(shell对象)
- * 
- */
-void shellTask(void *param)
-{
-    Shell *shell = (Shell *)param;
-    char data;
-#if SHELL_TASK_WHILE == 1
-    while(1)
-    {
-#endif
-        if (shell->read && shell->read(&data, 1) == 1)
-        {
-            shellHandler(shell, data);
-        }
-#if SHELL_TASK_WHILE == 1
-    }
-#endif
-}
-
-
 /**
  * @brief shell 输出用户列表(shell调用)
  */
@@ -1906,10 +1876,6 @@ void shellUsers(void)
         shellListUser(shell);
     }
 }
-SHELL_EXPORT_CMD(
-SHELL_CMD_PERMISSION(0)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC)|SHELL_CMD_DISABLE_RETURN,
-users, shellUsers, list all user);
-
 
 /**
  * @brief shell 输出命令列表(shell调用)
@@ -1922,10 +1888,6 @@ void shellCmds(void)
         shellListCommand(shell);
     }
 }
-SHELL_EXPORT_CMD(
-SHELL_CMD_PERMISSION(0)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC)|SHELL_CMD_DISABLE_RETURN,
-cmds, shellCmds, list all cmd);
-
 
 /**
  * @brief shell 输出变量列表(shell调用)
@@ -1938,10 +1900,6 @@ void shellVars(void)
         shellListVar(shell);
     }
 }
-SHELL_EXPORT_CMD(
-SHELL_CMD_PERMISSION(0)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC)|SHELL_CMD_DISABLE_RETURN,
-vars, shellVars, list all var);
-
 
 /**
  * @brief shell 输出按键列表(shell调用)
@@ -1954,10 +1912,6 @@ void shellKeys(void)
         shellListKey(shell);
     }
 }
-SHELL_EXPORT_CMD(
-SHELL_CMD_PERMISSION(0)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC)|SHELL_CMD_DISABLE_RETURN,
-keys, shellKeys, list all key);
-
 
 /**
  * @brief shell 清空控制台(shell调用)
@@ -1970,10 +1924,6 @@ void shellClear(void)
         shellWriteString(shell, shellText[SHELL_TEXT_CLEAR_CONSOLE]);
     }
 }
-SHELL_EXPORT_CMD(
-SHELL_CMD_PERMISSION(0)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC)|SHELL_CMD_DISABLE_RETURN,
-clear, shellClear, clear console);
-
 
 /**
  * @brief shell执行命令
@@ -2000,6 +1950,36 @@ int shellRun(Shell *shell, const char *cmd)
     }
 }
 
+
+/**
+ * @brief shell 任务
+ * 
+ * @param param 参数(shell对象)
+ * 
+ */
+void shellTask(void *param)
+{
+    Shell *shell = (Shell *)param;
+    char data;
+#if SHELL_TASK_WHILE == 1
+    while(1)
+    {
+#endif
+        if (shell->read && shell->read(&data, 1) == 1)
+        {
+            shellHandler(shell, data);
+        }
+#if SHELL_TASK_WHILE == 1
+    }
+#endif
+}
+
+SHELL_EXPORT_CMD(SHELL_CMD_PERMISSION(1)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC)|SHELL_CMD_DISABLE_RETURN,users, shellUsers, list all user);
+SHELL_EXPORT_CMD(SHELL_CMD_PERMISSION(1)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC)|SHELL_CMD_DISABLE_RETURN,setVar, shellSetVar, set var);
+SHELL_EXPORT_CMD(SHELL_CMD_PERMISSION(1)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_MAIN)|SHELL_CMD_DISABLE_RETURN,help, shellHelp, show command info\r\nhelp [cmd]);
+SHELL_EXPORT_CMD(SHELL_CMD_PERMISSION(1)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC)|SHELL_CMD_DISABLE_RETURN,vars, shellVars, list all var);
+SHELL_EXPORT_CMD(SHELL_CMD_PERMISSION(1)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC)|SHELL_CMD_DISABLE_RETURN,keys, shellKeys, list all key);
+SHELL_EXPORT_CMD(SHELL_CMD_PERMISSION(0)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC)|SHELL_CMD_DISABLE_RETURN,clear, shellClear, clear console);
 
 #if SHELL_EXEC_UNDEF_FUNC == 1
 /**
@@ -2034,9 +2014,7 @@ int shellExecute(int argc, char *argv[])
         return -1;
     }
 }
-SHELL_EXPORT_CMD(
-SHELL_CMD_PERMISSION(0)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_MAIN)|SHELL_CMD_DISABLE_RETURN,
-exec, shellExecute, execute function undefined);
+SHELL_EXPORT_CMD(SHELL_CMD_PERMISSION(0)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_MAIN)|SHELL_CMD_DISABLE_RETURN,exec, shellExecute, execute function undefined);
 #endif
 
 #if SHELL_KEEP_RETURN_VALUE == 1

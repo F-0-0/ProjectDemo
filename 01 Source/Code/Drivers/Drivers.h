@@ -9,10 +9,10 @@
 
 /******************* UART Funcation *******************/
 extern void Dev_UART_Init(void);
-extern void Dev_UART_RxBuf_Print(uint8_t Instance);
-extern char Dev_UART_RxBuf_Pop(uint8_t Instance);
-extern void Dev_UART_RxBuf_Push(uint8_t Instance, char Data);
-extern uint16_t Dev_UART_RxBuf_Size(uint8_t Instance);
+extern void Dev_UART_RxBuf_Print(uint8_t instance);
+extern char Dev_UART_RxBuf_Pop(uint8_t instance);
+extern void Dev_UART_RxBuf_Push(uint8_t instance, char data);
+extern uint16_t Dev_UART_RxBuf_Size(uint8_t instance);
 /******************* UART Funcation *******************/
 
 /******************* WDT Funcation *******************/
@@ -24,23 +24,24 @@ extern void Dev_Feed_WDT(void);
 extern void Dev_ADC_Init(void);
 extern void Dev_ADC_Task(void);
 extern void Dev_DMA_Task(void);
-extern uint16_t Dev_ADC_GetValue(uint8_t Instance, uint8_t Channel);
+extern uint16_t Dev_ADC_GetValue(uint8_t instance, uint8_t channel);
 /******************* ADC Funcation *******************/
 
-/******************* EPWM Funcation ******************/
+/******************* EPWM Funcation *******************/
 extern void Dev_PWM_Init(void);
-extern void Dev_PWM_ChxEnable(uint32_t Instance, uint8_t Channel, uint8_t Enable);
-extern void Dev_PWM_SetPeriod(uint32_t Instance, uint16_t PeriodValue);
-extern void Dev_PWM_SetDutyCycle(uint32_t Instance, uint8_t Channel, uint16_t DutyValue);
-extern void Dev_PWM_SetOutputPolarity(uint32_t Instance, uint16_t Channel, uint8_t Polarity);
+extern void Dev_PWM_ChxEnable(uint32_t instance, uint8_t channelId, uint8_t enable);
+extern void Dev_PWM_SetPeriod(uint32_t instance, uint16_t periodValue);
+extern void Dev_PWM_SetDutyCycle(uint32_t instance, uint8_t channel, uint16_t DutyValue);
+extern void Dev_PWM_SetOutputPolarity(uint32_t instance, uint16_t channelId, uint8_t polarity);
 /******************* EPWM Funcation *******************/
 
-/******************* FLash Funcation ******************/
+/******************* FLash Funcation *******************/
 extern void Dev_FLASH_Init(void);
-extern uint8_t Dev_DFLASH_Erase(uint32_t Address);                  // 堵塞式 擦 确保SPI等时序不被打断
-extern uint8_t Dev_DFLASH_Read(uint32_t Address, uint8_t *Buffer);  // 堵塞式 读 确保SPI等时序不被打断
-extern uint8_t Dev_DFLASH_Write(uint32_t Address, uint8_t *Buffer); // 堵塞式 写 确保SPI等时序不被打断
-/******************* FLash Funcation ******************/
+extern uint8_t Dev_DFLASH_IsBusy(void);
+extern uint8_t Dev_DFLASH_Erase(uint32_t Address, uint32_t TimeOut);
+extern uint8_t Dev_DFLASH_Read(uint32_t Address, uint8_t *Buffer, uint32_t TimeOut);
+extern uint8_t Dev_DFLASH_Write(uint32_t Address, uint8_t *Buffer, uint32_t TimeOut);
+/******************* FLash Funcation *******************/
 
 /******************* Driver Init Funcation *******************/
 extern void Dev_CAN_Init(void);   // 01
@@ -50,6 +51,7 @@ extern void Dev_LIN_Init(void);   // 04
 extern void Dev_CMP_Init(void);   // 08
 extern void Dev_Timer_Init(void); // 09
 extern void Dev_RTC_Init(void);   // 10
+extern void Dev_Flash_Init(void); // 13
 /******************* Driver Init Funcation *******************/
 
 /******************* System Funcation *******************/

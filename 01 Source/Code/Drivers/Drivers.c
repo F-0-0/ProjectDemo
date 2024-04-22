@@ -8,14 +8,29 @@
 #include "Drivers.h"
 
 /**
- * @brief printf 函数从定向到串口
+ * @brief printf 函数重定向到串口
  */
 int fputc(int ch, FILE *f)
 {
-    // while ((SCI0->S1 & 0x40U) == 0U)
-    //     ; /* Judge whether the serial port is sent */
-
-    // SCI0->D = (uint8_t)ch;
+    static uint64_t TimeOut;
+    if (GetDebugMode() == STD_TRUE)
+    {
+        if ((GetSysTick_ms() - TimeOut) < (10 * 60 * 1000))
+        {
+            // while ((SCI3->S1 & 0x40U) == 0U)
+            //     ; /* Judge whether the serial port is sent */
+            // SCI3->D = (uint8_t)ch;
+        }
+        else
+        {
+            CloseDebugMode();
+        }
+    }
+    else
+    {
+        TimeOut = GetSysTick_ms();
+    }
+    return ch;
 
     return ch;
 }

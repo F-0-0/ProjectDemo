@@ -4,10 +4,12 @@
  * @brief log
  * @version 1.0.0
  * @date 2020-07-30
- * 
+ *
  * @copyright (c) 2020 Letter
- * 
+ *
  */
+
+// clang-format off
 #include "log.h"
 #include "stdio.h"
 #include "stdarg.h"
@@ -139,7 +141,7 @@ SHELL_CMD_PERMISSION(0)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC)|SHELL_CMD_DISABLE_RE
 logSetLevel, logSetLevel,  set log level\r\n logSetLevel [level],
 (void *)shellCompanionGet(shellGetCurrent(), SHELL_COMPANION_ID_LOG), p1);
 #else
-SHELL_EXPORT_CMD(SHELL_CMD_PERMISSION(0)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC),
+SHELL_EXPORT_CMD(SHELL_CMD_PERMISSION(1)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC),
 logSetLevel, logSetLevel, set log level\r\n logSetLevel [log] [level]);
 #endif /** SHELL_USING_COMPANION == 1 */
 
@@ -298,7 +300,7 @@ hexdump, logHexDump, hex dump\r\n hexdump [base] [len],
 (void *)shellCompanionGet(shellGetCurrent(), SHELL_COMPANION_ID_LOG), LOG_NONE, (void *)p1, (unsigned int)p2);
 #else
 SHELL_EXPORT_CMD(
-SHELL_CMD_PERMISSION(0)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC)|SHELL_CMD_DISABLE_RETURN,
+SHELL_CMD_PERMISSION(1)|SHELL_CMD_TYPE(SHELL_TYPE_CMD_FUNC)|SHELL_CMD_DISABLE_RETURN,
 hexdump, logHexDump, hex dump\r\n hexdump [log] [level] [base] [len]);
 #endif /** SHELL_USING_COMPANION == 1 */
 
