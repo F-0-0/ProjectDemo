@@ -16,8 +16,8 @@
 
 /******************************** User Configuration ********************************/
 // clang-format off
-#define PAGE_FLAG0          0x1234U
-#define PAGE_FLAG1          0x5678U
+#define PAGE_FLAG0          0x12345678U
+#define PAGE_FLAG1          0x87654321U
 
 #define BASE_ADDRESS        0x60000000U // 基准地址
 #define PAGE_SIZE           512U        // 页的大小(字节)(最小擦出单元)
@@ -28,11 +28,11 @@
 #define CRC_SIZE            0x4U // CRC校验段   数据大小（字节）
 #define FLASH_DATA_SIZE     (PAGE_SIZE - VERSIONID_SIZE - PAGE_FLAG_SIZE * 2 - CRC_SIZE) // 数据段    数据大小（字节）
 
-#define VERSIONID_BASE      0x0U                                        // 版本号段  起始索引
-#define PAGE_FLAG0_BASE     (VERSIONID_BASE + PAGE_FLAG_SIZE)           // 标志0段   起始索引
-#define FLASH_DATA_BASE     (PAGE_FLAG0_BASE + PAGE_FLAG_SIZE)          // 数据段    起始索引
-#define PAGE_FLAG1_BASE     (PAGE_SIZE - 1 - CRC_SIZE - PAGE_FLAG_SIZE) // 标志1段   起始索引
-#define PAGE_CRC_BASE       (PAGE_SIZE - 1 - CRC_SIZE)                  // CRC校验段 起始索引
+#define VERSIONID_BASE      0x0U                                    // 版本号段  起始索引
+#define PAGE_FLAG0_BASE     (VERSIONID_BASE + PAGE_FLAG_SIZE)       // 标志0段   起始索引
+#define FLASH_DATA_BASE     (PAGE_FLAG0_BASE + PAGE_FLAG_SIZE)      // 数据段    起始索引
+#define PAGE_FLAG1_BASE     (PAGE_SIZE - CRC_SIZE - PAGE_FLAG_SIZE) // 标志1段   起始索引
+#define PAGE_CRC_BASE       (PAGE_SIZE - CRC_SIZE)                  // CRC校验段 起始索引
 
 // clang-format on
 /******************************** User Configuration ********************************/
@@ -66,9 +66,7 @@ typedef struct
     uint32_t NowAddress;            // 当前地址
     uint32_t PageMapIndex;          // 映射表索引
     uint16_t InvalidPageCnt;        // 无效页数量
-    int16_t WriteCnt;               // 写入请求次数
-    uint8_t IsEraseNextPage;        // 下一页是否擦除
-    uint8_t IsReady;                // 下一页是否擦除
+    uint8_t IsReady;                //
     uint8_t Buffer[PAGE_SIZE];      // 缓存区
     PageMap_t PageMap[PAGE_NUMBER]; // 映射表
 } Flash_t;
@@ -76,9 +74,8 @@ typedef struct
 /**
  * @brief 初始化Flash框架
  *
- * @param WriteCntToCommit 写入次数达到该值时，将缓存区的数据写入Flash
  */
-void Flash_Init(uint8_t WriteCntToCommit);
+void Flash_Init(void);
 
 /**
  * @brief 找上一个有效页，并擦除当前页，以及在查找中遇到的CRC校验失败的页
@@ -111,4 +108,6 @@ uint8_t FlashBufferWrite(uint8_t *Buffer, uint16_t Size);
  * @return uint8_t
  */
 uint8_t FlashBufferCommit(void);
+
+uint32_t FlashNowAddress(void);
 #endif

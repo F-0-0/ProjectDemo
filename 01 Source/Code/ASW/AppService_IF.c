@@ -17,9 +17,10 @@ ProjectInfor_t ProjectInfor;
 
 // clang-format off
 static TaskInfor_t TaskList[] = {
-    //  ID  IsRun       Period  Task0_Function                  Parameter
-    {   0,  STD_TRUE,   100,   .Function1 = shellTask,          &shell  }, // 00
-    {   1,  STD_TRUE,   2000,  .Function0 = Functional_Task,    STD_NULL}, // 01
+    //      ID  IsRun       Period  NextTime    RunCnt  Task0_Function                  Parameter
+    [0] = { 0,  STD_TRUE,   100,    0,          0,      .Function1 = shellTask,         &shell  },
+    [1] = { 1,  STD_TRUE,   20,     0,          0,      .Function0 = Functional_Task,   STD_NULL},
+    [2] = { 2,  STD_TRUE,   20,     0,          0,      .Function0 = Idle_Task,         STD_NULL},
 };
 // clang-format on
 
@@ -53,18 +54,25 @@ void ProjectInfor_UpDate(void)
 void Service_Init(void)
 {
     User_Shell_Init();
-    cm_backtrace_init((const char *)ProjectInfor.FlashData.SerialNumber, (const char *)ProjectInfor.FlashData.APP_Version, (const char *)ProjectInfor.FlashData.HardwareVersion);
+    cm_backtrace_init((const char *)ProjectInfor.FlashData.SerialNumber,
+                      (const char *)ProjectInfor.FlashData.APP_Version,
+                      (const char *)ProjectInfor.FlashData.HardwareVersion);
+
+    Flash_Init();
+    FlashBufferRead((uint8_t *)&ProjectInfor.FlashData, sizeof(ProjectInfor.FlashData));
+    // FlashData.ResetReason = SRC_LL_GetResetStateFlag();
 }
 
 void Service_Task(void)
 {
-    ProjectInfor_UpDate();
-    uint8_t TaskRunCunt = 0;
+
     for (uint8_t i = 0; i < sizeof(TaskList) / sizeof(TaskList[0]); i++)
     {
-        if (TaskList[i].IsRun == STD_TRUE && ProjectInfor.RunTime % TaskList[i].Period == 0)
+        ProjectInfor_UpDate();
+        if (ProjectInfor.RunTime >= TaskList[i].NextStartTime)
         {
-            TaskRunCunt++;
+            TaskList[i].NextStartTime = ProjectInfor.RunTime + TaskList[i].Period;
+            TaskList[i].RunCounter++;
             if (TaskList[i].Parameter != STD_NULL)
             {
                 TaskList[i].Function1(TaskList[i].Parameter);
@@ -74,11 +82,6 @@ void Service_Task(void)
                 TaskList[i].Function0();
             }
         }
-    }
-
-    if (TaskRunCunt == 0)
-    {
-        Idle_Task();
     }
 }
 

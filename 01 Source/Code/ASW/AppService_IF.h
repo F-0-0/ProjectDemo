@@ -45,6 +45,9 @@ typedef struct
     uint8_t ID;
     uint8_t IsRun;
     uint16_t Period; // ms
+    uint64_t NextStartTime;
+    uint64_t RunCounter;
+
     union
     {
         Task0_Function Function0;
