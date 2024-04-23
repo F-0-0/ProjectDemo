@@ -2,7 +2,7 @@
  * @file Public_IF.c
  * @author your name (you@domain.com)
  * @brief
- * @version 0.1
+ * @version 0.sizeof(uint8_t)
  * @date 2024-03-06
  *
  *
@@ -14,19 +14,19 @@
 
 static uint8_t GetSizeTyes(uint32_t Length)
 {
-    if (Length % 8 == 0)
+    if (Length % sizeof(UINT64_T) == 0)
     {
-        return 8;
+        return sizeof(uint64_t);
     }
-    else if (Length % 4 == 0)
+    else if (Length % sizeof(uint32_t) == 0)
     {
-        return 4;
+        return sizeof(uint32_t);
     }
-    else if (Length % 2 == 0)
+    else if (Length % sizeof(uint16_t) == 0)
     {
-        return 2;
+        return sizeof(uint16_t);
     }
-    return 1;
+    return sizeof(uint8_t);
 }
 
 void MemoryCopy(uint8_t *Dst, uint8_t *Src, uint32_t Length)
@@ -41,27 +41,27 @@ void MemoryCopy(uint8_t *Dst, uint8_t *Src, uint32_t Length)
         uint16_t *Src16 = (uint16_t *)Src;
         switch (GetSizeTyes(Length))
         {
-        case 8: // uint64_t
+        case sizeof(uint64_t): // uint64_t
             while (Length != 0)
             {
                 *(Dst64++) = *(Src64++);
-                Length -= 8;
+                Length -= sizeof(uint64_t);
             }
             break;
 
-        case 4: // uint32_t
+        case sizeof(uint32_t): // uint32_t
             while (Length != 0)
             {
                 *(Dst32++) = *(Src32++);
-                Length -= 4;
+                Length -= sizeof(uint32_t);
             }
             break;
 
-        case 2: // uint16_t
+        case sizeof(uint16_t): // uint16_t
             while (Length != 0)
             {
                 *(Dst16++) = *(Src16++);
-                Length -= 2;
+                Length -= sizeof(uint16_t);
             }
             break;
 
@@ -84,27 +84,27 @@ void MemorySet(uint8_t *Dst, uint8_t Data, uint32_t Length)
         uint16_t *Dst16 = (uint16_t *)Dst;
         switch (GetSizeTyes(Length))
         {
-        case 8: // uint64_t
+        case sizeof(uint64_t): // uint64_t
             while (Length != 0)
             {
                 *(Dst64++) = Data;
-                Length -= 8;
+                Length -= sizeof(uint64_t);
             }
             break;
 
-        case 4: // uint32_t
+        case sizeof(uint32_t): // uint32_t
             while (Length != 0)
             {
                 *(Dst32++) = Data;
-                Length -= 4;
+                Length -= sizeof(uint32_t);
             }
             break;
 
-        case 2: // uint16_t
+        case sizeof(uint16_t): // uint16_t
             while (Length != 0)
             {
                 *(Dst16++) = Data;
-                Length -= 2;
+                Length -= sizeof(uint16_t);
             }
             break;
 
@@ -130,29 +130,29 @@ uint8_t MemoryCompare(uint8_t *Src1, uint8_t *Src2, uint32_t Length)
         uint16_t *Src2_16 = (uint16_t *)Src2;
         switch (GetSizeTyes(Length))
         {
-        case 8: // uint64_t
+        case sizeof(uint64_t): // uint64_t
             while (Length != 0)
             {
                 if (*(Src1_64++) != *(Src2_64++))
                 {
                     return STD_FALSE;
                 }
-                Length -= 8;
+                Length -= sizeof(uint64_t);
             }
             break;
 
-        case 4: // uint32_t
+        case sizeof(uint32_t): // uint32_t
             while (Length != 0)
             {
                 if (*(Src1_32++) != *(Src2_32++))
                 {
                     return STD_FALSE;
                 }
-                Length -= 4;
+                Length -= sizeof(uint32_t);
             }
             break;
 
-        case 2: // uint16_t
+        case sizeof(uint16_t): // uint16_t
             while (Length != 0)
             {
 
@@ -160,7 +160,7 @@ uint8_t MemoryCompare(uint8_t *Src1, uint8_t *Src2, uint32_t Length)
                 {
                     return STD_FALSE;
                 }
-                Length -= 2;
+                Length -= sizeof(uint16_t);
             }
             break;
 
