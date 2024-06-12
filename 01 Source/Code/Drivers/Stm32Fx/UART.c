@@ -5,7 +5,7 @@
  * @date 2024-04-13
  */
 
-#include "../../Public/Public_IF.h"
+#include "../../Public/Project_Type.h"
 
 static char Dev_UART_RxBuffer[4][512]; // UART0接收数据存储数组
 static uint16_t Dev_UART_Index[4];     // 下一位入队index

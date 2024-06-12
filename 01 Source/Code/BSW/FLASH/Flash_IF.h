@@ -11,7 +11,7 @@
 #ifndef FLASH_IF_H
 #define FLASH_IF_H
 
-#include "../../Public/Public_IF.h"
+#include "../../Public/Project_Type.h"
 #include "../../Drivers/Drivers.h"
 
 /******************************** User Configuration ********************************/

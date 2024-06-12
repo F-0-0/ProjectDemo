@@ -520,6 +520,11 @@
               <FilePath>.\Code\ASW\AppService_IF.c</FilePath>
             </File>
             <File>
+              <FileName>Project_Type.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Code\Public\Project_Type.c</FilePath>
+            </File>
+            <File>
               <FileName>Public_IF.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Code\Public\Public_IF.c</FilePath>

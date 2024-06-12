@@ -8,7 +8,7 @@
 #ifndef GPIO_IF_H
 #define GPIO_IF_H
 
-#include "../../Public/Public_IF.h"
+#include "../../Public/Project_Type.h"
 
 /******************************** User Configuration ********************************/
 // clang-format off

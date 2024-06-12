@@ -5,7 +5,7 @@
  * @date 2024-04-18
  */
 
-#include "../Public/Public_IF.h"
+#include "../Public/Project_Type.h"
 
 /******************* UART Funcation *******************/
 extern void Dev_UART_Init(void);

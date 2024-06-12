@@ -43,7 +43,7 @@
 #ifndef CAN_IF_H
 #define CAN_IF_H
 
-#include "../../Public/Public_IF.h"
+#include "../../Public/Project_Type.h"
 #include "../../Drivers/Drivers.h"
 #include "CanMaxtrixCfg.h"
 

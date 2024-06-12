@@ -14,7 +14,7 @@
 
 static uint8_t GetSizeTyes(uint32_t Length)
 {
-    if (Length % sizeof(UINT64_T) == 0)
+    if (Length % sizeof(uint64_t) == 0)
     {
         return sizeof(uint64_t);
     }

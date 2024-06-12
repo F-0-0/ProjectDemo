@@ -5,7 +5,7 @@
  * @date 2024-04-13
  */
 
-#include "../../Public/Public_IF.h"
+#include "../../Public/Project_Type.h"
 
 void Dev_WDT_Init(void)
 {

@@ -8,7 +8,7 @@
 #ifndef CANMAXTRIXCFG_H
 #define CANMAXTRIXCFG_H
 
-#include "../../Public/Public_IF.h"
+#include "../../Public/Project_Type.h"
 /******************************** User Configuration ********************************/
 // clang-format off
 #define CAN_TX_CYCLE        (0x0U) // 周期型报文
