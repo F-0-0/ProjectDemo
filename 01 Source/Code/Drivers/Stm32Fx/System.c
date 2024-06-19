@@ -19,6 +19,12 @@ void Dev_SystemConfig(void)
 {
 }
 
+ResetReason_t Dev_GetResetReasn(void)
+{
+    ResetReason_t ResetReasonIndex = RESET_POWER_ON;
+    return ResetReasonIndex;
+}
+
 void Dev_GPIO_Config(void)
 {
 }

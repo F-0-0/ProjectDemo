@@ -45,9 +45,6 @@ typedef unsigned    char            Bool;
 #define STD_OPEN                    1U
 #define STD_CLOSE                   0U
 
-#define STD_LOCK                    1U
-#define STD_UNLOCK                  0U
-
 #define STD_ACTIVE                  1U
 #define STD_IDLE                    0U
 

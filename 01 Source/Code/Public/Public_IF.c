@@ -208,19 +208,19 @@ uint32_t CRC32(uint8_t *Buffer, uint32_t Length)
 /******************************     Data Check    ************************************/
 
 /******************************       SysTick     ************************************/
-uint64_t GetSysTick_us(void)
+int64_t GetSysTick_us(void)
 {
-    return (uint64_t)perfc_convert_ticks_to_us(get_system_ticks());
+    return perfc_convert_ticks_to_us(get_system_ticks());
 }
 
-uint64_t GetSysTick_ms(void)
+int64_t GetSysTick_ms(void)
 {
-    return (uint64_t)perfc_convert_ticks_to_ms(get_system_ticks());
+    return perfc_convert_ticks_to_ms(get_system_ticks());
 }
 
 void PrintSysTick(void)
 {
-    uint64_t data = (uint64_t)GetSysTick_us();
+    int64_t data = GetSysTick_us();
     uint16_t microsecond = data % 1000;
     uint16_t millisecond = data / 1000 % 1000;
     uint16_t second = data / 1000 / 1000 % 60;
@@ -250,12 +250,12 @@ extern void CloseDebugMode(void)
 }
 /******************************      DebugMode    ************************************/
 const char *ResetReason[] = {
-    [0] = "Power On Reset",         // 上电复位
-    [1] = "Brown Out Reset",        // 掉电复位
-    [2] = "External Reset",         // 外部复位
-    [3] = "Programming Reset",      // 编程复位
-    [4] = "Watchdog Reset",         // 看门狗复位
-    [5] = "Address Overflow Reset", // 地址溢出复位
-    [6] = "Software Reset",         // CPU 软件复位
-    [7] = "Lockup Reset",           // CPU 锁死复位
+    [0] = "Power On Reset",    // 上电复位
+    [1] = "Brown Out Reset",   // 掉电复位
+    [2] = "External Reset",    // 外部复位
+    [3] = "Programming Reset", // 编程复位
+    [4] = "Watchdog Reset",    // 看门狗复位
+    [5] = "PC Overflow Reset", // PC 地址溢出复位
+    [6] = "Software Reset",    // CPU 软件复位
+    [7] = "Lockup Reset",      // CPU 锁死复位
 };

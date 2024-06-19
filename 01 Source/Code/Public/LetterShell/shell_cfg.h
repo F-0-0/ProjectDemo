@@ -12,7 +12,7 @@
 #ifndef __SHELL_CFG_H__
 #define __SHELL_CFG_H__
 
-extern unsigned long long GetSysTick_ms(void);
+extern long long GetSysTick_ms(void);
 // clang-format off
 #ifdef SHELL_CFG_USER
 #include SHELL_CFG_USER

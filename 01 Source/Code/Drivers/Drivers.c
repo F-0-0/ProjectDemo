@@ -12,10 +12,10 @@
  */
 int fputc(int ch, FILE *f)
 {
-    static uint64_t TimeOut;
+    static int64_t TimeOut;
     if (GetDebugMode() == STD_TRUE)
     {
-        if ((GetSysTick_ms() - TimeOut) < (10 * 60 * 1000))
+        if ((GetSysTick_ms() - TimeOut) < (TIME_1M * 10))
         {
             // while ((SCI3->S1 & 0x40U) == 0U)
             //     ; /* Judge whether the serial port is sent */
@@ -30,8 +30,6 @@ int fputc(int ch, FILE *f)
     {
         TimeOut = GetSysTick_ms();
     }
-    return ch;
-
     return ch;
 }
 

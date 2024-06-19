@@ -57,6 +57,7 @@ extern void Dev_Flash_Init(void); // 13
 /******************* System Funcation *******************/
 extern void Dev_SystemReset(void);
 extern void Dev_SystemConfig(void);
+extern ResetReason_t Dev_GetResetReasn(void);
 
 extern void Dev_GPIO_Config(void);
 extern void Dev_GPIO_Toggle(int32_t Pin);
